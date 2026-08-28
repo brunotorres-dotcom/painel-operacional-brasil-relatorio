@@ -1,1 +1,1749 @@
-<html><body>teste</body></html>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Big+Shoulders+Text:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<title>Painel Operacional Brasil</title>
+<style>
+  :root{
+    --bg:#F5F7FA;
+    --surface:#FFFFFF;
+    --surface-2:#EEF1F6;
+    --border:#DCE3ED;
+    --ink:#141B27;
+    --ink-muted:#57657A;
+    --ink-faint:#8996A8;
+    --accent:#1550D6;
+    --accent-ink:#FFFFFF;
+    --accent-soft:#E4EBFB;
+    --good:#2E7D46;
+    --good-soft:#E4F2E6;
+    --warn:#A9701C;
+    --warn-soft:#F7EBD6;
+    --bad:#B23A3A;
+    --bad-soft:#F8E3E0;
+    --shadow: 0 1px 2px rgba(15,20,32,0.07);
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0B1420;
+      --surface:#111C2B;
+      --surface-2:#172334;
+      --border:#243347;
+      --ink:#E8EDF5;
+      --ink-muted:#9AA7BC;
+      --ink-faint:#71809A;
+      --accent:#6C9BFF;
+      --accent-ink:#081633;
+      --accent-soft:#182B4D;
+      --good:#59B476;
+      --good-soft:#173226;
+      --warn:#E0AC52;
+      --warn-soft:#332A16;
+      --bad:#E1746E;
+      --bad-soft:#3A1E1C;
+      --shadow: 0 1px 2px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0B1420;
+    --surface:#111C2B;
+    --surface-2:#172334;
+    --border:#243347;
+    --ink:#E8EDF5;
+    --ink-muted:#9AA7BC;
+    --ink-faint:#71809A;
+    --accent:#6C9BFF;
+    --accent-ink:#081633;
+    --accent-soft:#182B4D;
+    --good:#59B476;
+    --good-soft:#173226;
+    --warn:#E0AC52;
+    --warn-soft:#332A16;
+    --bad:#E1746E;
+    --bad-soft:#3A1E1C;
+    --shadow: 0 1px 2px rgba(0,0,0,0.35);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{
+    max-width:1180px;
+    margin:0 auto;
+    padding:2.25rem 1.5rem 4rem;
+    display:flex;
+    flex-direction:column;
+    gap:1.75rem;
+  }
+
+  .mono{font-family:"IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;}
+  .num{font-variant-numeric:tabular-nums;}
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:1.5rem;
+    flex-wrap:wrap;
+    padding-bottom:1.25rem;
+    border-bottom:1px solid var(--border);
+  }
+  .eyebrow{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.7rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 0.35rem;
+    font-weight:500;
+  }
+  h1{
+    font-family:"Big Shoulders Display", ui-sans-serif, sans-serif;
+    font-weight:700;
+    font-size:clamp(2.1rem, 4vw, 2.75rem);
+    letter-spacing:0.01em;
+    margin:0;
+    line-height:0.95;
+    text-wrap:balance;
+  }
+  .subtitle{
+    margin:0.5rem 0 0;
+    color:var(--ink-muted);
+    font-size:0.95rem;
+    max-width:38em;
+  }
+  .topbar-right{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:0.5rem;
+  }
+  .date-box{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.85rem;
+    color:var(--ink-muted);
+  }
+  .badge-row{display:flex; gap:0.4rem; flex-wrap:wrap; justify-content:flex-end;}
+  .theme-switch{display:inline-flex; gap:2px; background:var(--surface-2); border:1px solid var(--border); border-radius:5px; padding:2px;}
+  .theme-switch button{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.68rem;
+    letter-spacing:0.04em;
+    padding:0.28rem 0.6rem;
+    border:none;
+    background:transparent;
+    color:var(--ink-faint);
+    border-radius:3px;
+    cursor:pointer;
+  }
+  .theme-switch button.active{background:var(--surface); color:var(--ink); box-shadow:var(--shadow); font-weight:600;}
+  .theme-switch button:focus-visible{outline:2px solid var(--accent); outline-offset:1px;}
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:0.4rem;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.68rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:0.3rem 0.6rem;
+    border-radius:3px;
+    background:var(--accent-soft);
+    color:var(--accent);
+    border:1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    font-weight:600;
+    white-space:nowrap;
+  }
+
+  /* ---------- Section headers ---------- */
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:1rem;
+    flex-wrap:wrap;
+    margin-bottom:0.4rem;
+  }
+  .section-title{
+    font-family:"Big Shoulders Text", ui-sans-serif, sans-serif;
+    font-weight:700;
+    font-size:1.05rem;
+    letter-spacing:0.02em;
+    text-transform:uppercase;
+    margin:0;
+    color:var(--ink);
+  }
+  .section-note{
+    font-size:0.8rem;
+    color:var(--ink-faint);
+    margin:0 0 0.9rem;
+  }
+
+  /* ---------- Scope switcher ---------- */
+  .scope-bar{
+    display:flex;
+    align-items:center;
+    gap:0.55rem;
+  }
+  .scope-label{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.7rem;
+    letter-spacing:0.07em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+  .scope-select{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.8rem;
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:4px;
+    padding:0.4rem 0.55rem;
+    cursor:pointer;
+  }
+  .scope-select:focus-visible{ outline:2px solid var(--accent); outline-offset:1px; }
+
+  /* ---------- KPI grid ---------- */
+  .kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(175px, 1fr));
+    gap:0.75rem;
+  }
+  .kpi-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-left:3px solid var(--status, var(--accent));
+    border-radius:5px;
+    padding:0.95rem 1rem 1rem;
+    box-shadow:var(--shadow);
+    display:flex;
+    flex-direction:column;
+    gap:0.4rem;
+    min-width:0;
+    transition:border-color 0.15s ease;
+  }
+  .kpi-label{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.68rem;
+    letter-spacing:0.07em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+  .kpi-value{
+    font-family:"Big Shoulders Display", sans-serif;
+    font-weight:700;
+    font-size:2.15rem;
+    line-height:1;
+    color:var(--ink);
+  }
+  .kpi-meta{
+    font-size:0.78rem;
+    color:var(--ink-muted);
+    display:flex;
+    align-items:center;
+    gap:0.35rem;
+    line-height:1.5;
+  }
+  .delta{
+    font-family:"IBM Plex Mono", monospace;
+    font-weight:600;
+    font-size:0.78rem;
+  }
+  .delta.up{color:var(--good);}
+  .delta.down{color:var(--bad);}
+  .delta.flat{color:var(--ink-faint);}
+  .spark{display:block; margin-top:0.15rem;}
+
+  /* ---------- Cards / panels ---------- */
+  .card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:1.1rem 1.25rem 1.25rem;
+    box-shadow:var(--shadow);
+  }
+
+  /* ---------- Faixas de SLA ---------- */
+  .band-bar{
+    display:flex;
+    width:100%;
+    height:30px;
+    border-radius:4px;
+    overflow:hidden;
+    border:1px solid var(--border);
+  }
+  .band-bar span{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.72rem;
+    font-weight:600;
+    color:var(--accent-ink);
+  }
+  .band-legend{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(190px,1fr));
+    gap:0.6rem;
+    margin-top:0.9rem;
+  }
+  .band-item{
+    display:flex;
+    align-items:center;
+    gap:0.55rem;
+    font-size:0.83rem;
+    padding:0.5rem 0.65rem;
+    background:var(--surface-2);
+    border-radius:4px;
+  }
+  .swatch{width:10px; height:10px; border-radius:2px; flex:none;}
+  .band-item .count{
+    font-family:"IBM Plex Mono", monospace;
+    font-weight:600;
+    margin-left:auto;
+  }
+  .band-item .wtrend{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.72rem;
+    color:var(--ink-faint);
+    min-width:3.6em;
+    text-align:right;
+  }
+  .band-item[data-band], .band-bar span[data-band]{
+    cursor:pointer;
+    transition:box-shadow .12s ease, filter .12s ease, opacity .12s ease;
+  }
+  .band-item[data-band]:hover, .band-bar span[data-band]:hover{ filter:brightness(1.06); }
+  .band-item[data-band].active{
+    box-shadow:inset 0 0 0 2px var(--accent-ink);
+  }
+  .band-bar span[data-band].active{ box-shadow:inset 0 0 0 2px var(--accent-ink); }
+  .band-bar.has-filter span[data-band]:not(.active){ opacity:0.35; }
+  .band-legend.has-filter .band-item[data-band]:not(.active){ opacity:0.5; }
+  .filter-clear{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.74rem;
+    color:var(--accent-ink);
+    background:none;
+    border:1px solid var(--accent-ink);
+    border-radius:3px;
+    padding:0.15rem 0.5rem;
+    cursor:pointer;
+    margin-left:0.6rem;
+  }
+
+  /* ---------- Causas (drill-down) ---------- */
+  .hidden{display:none !important;}
+  .causas-table{min-width:0;}
+  .causas-empty-text{
+    margin:0.2rem 0.2rem 0;
+    font-size:0.85rem;
+    color:var(--ink-faint);
+    font-style:italic;
+  }
+
+  /* ---------- Tendência (gráfico de linha) ---------- */
+  .trend-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap:0.75rem;
+    margin-bottom:1rem;
+  }
+  .trend-card{
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:0.85rem 0.95rem 0.7rem;
+  }
+  .trend-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:0.3rem;
+  }
+  .trend-label{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.68rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+  .trend-range{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.68rem;
+    color:var(--ink-faint);
+  }
+  .trend-chart{display:block; width:100%; height:auto; overflow:visible;}
+  .trend-chart .grid-line{stroke:var(--border); stroke-width:1;}
+  .trend-chart .area{fill-opacity:0.16;}
+  .trend-chart .line{fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;}
+  .trend-chart .endpoint{stroke:var(--surface-2); stroke-width:2;}
+  .trend-chart .hover-line{stroke:var(--ink-faint); stroke-width:1; stroke-dasharray:2,2; opacity:0; pointer-events:none;}
+  .trend-chart .hover-dot{opacity:0; pointer-events:none; stroke:var(--surface-2); stroke-width:2;}
+  .trend-chart .axis-label{font-family:"IBM Plex Mono", monospace; font-size:8px; fill:var(--ink-faint);}
+  .trend-chart .value-label{font-family:"IBM Plex Mono", monospace; font-size:9.5px; font-weight:600;}
+  .trend-tooltip{
+    position:absolute;
+    pointer-events:none;
+    background:var(--ink);
+    color:var(--bg);
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.68rem;
+    padding:0.25rem 0.45rem;
+    border-radius:4px;
+    white-space:nowrap;
+    opacity:0;
+    transform:translate(-50%, -130%);
+    transition:opacity 0.1s ease;
+    z-index:5;
+  }
+  .trend-chart-wrap{position:relative;}
+  .trend-hint{
+    margin:0.35rem 0 0;
+    font-size:0.7rem;
+    color:var(--ink-faint);
+    font-style:italic;
+  }
+  /* ---------- Balão de quebra por motivo (clique no ponto de hoje) ---------- */
+  .trend-balloon{
+    position:absolute;
+    display:none;
+    z-index:6;
+    min-width:190px;
+    max-width:280px;
+    max-height:220px;
+    overflow-y:auto;
+    background:var(--surface);
+    color:var(--ink);
+    border:1px solid var(--border);
+    border-radius:6px;
+    box-shadow:0 6px 20px rgba(10,14,22,0.22);
+    padding:0.7rem 0.8rem 0.75rem;
+    font-size:0.76rem;
+    line-height:1.45;
+    transform:translate(-50%, calc(-100% - 14px));
+  }
+  .trend-balloon.open{ display:block; }
+  .trend-balloon::after{
+    content:"";
+    position:absolute;
+    left:50%; bottom:-7px;
+    transform:translateX(-50%);
+    width:12px; height:12px;
+    background:var(--surface);
+    border-right:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    transform:translateX(-50%) rotate(45deg);
+  }
+  .trend-balloon-title{
+    font-family:"IBM Plex Mono", monospace;
+    font-weight:600;
+    font-size:0.72rem;
+    margin-bottom:0.4rem;
+    display:block;
+  }
+  .trend-balloon-row{
+    display:flex;
+    justify-content:space-between;
+    gap:0.6rem;
+    padding:0.15rem 0;
+    border-top:1px dashed var(--border);
+  }
+  .trend-balloon-row:first-of-type{ border-top:none; }
+  .trend-balloon-close{
+    position:absolute;
+    top:0.35rem; right:0.4rem;
+    background:none; border:none;
+    color:var(--ink-faint);
+    cursor:pointer;
+    font-size:0.85rem;
+    line-height:1;
+    padding:0.1rem;
+  }
+  .trend-balloon-close:hover{ color:var(--ink); }
+
+  /* ---------- Table ---------- */
+  .table-wrap{overflow-x:auto;}
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:0.85rem;
+  }
+  #base-table{min-width:920px;}
+  thead th{
+    text-align:left;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.68rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    font-weight:600;
+    padding:0 0.65rem 0.55rem;
+    border-bottom:1px solid var(--border);
+    white-space:nowrap;
+  }
+  th.num-col, td.num-col{text-align:right;}
+  tbody tr{
+    border-left:3px solid var(--row-status, transparent);
+    transition:background-color 0.12s ease;
+  }
+  tbody tr[data-base]{cursor:pointer;}
+  tbody tr[data-base]:hover{background:var(--surface-2);}
+  tbody tr[data-base]:focus-visible{outline:2px solid var(--accent); outline-offset:-2px;}
+  tbody tr.row-selected{background:var(--accent-soft);}
+  tbody td{
+    padding:0.6rem 0.65rem;
+    border-bottom:1px solid var(--border);
+    white-space:nowrap;
+  }
+  .base-cell{
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+  }
+  .base-code{font-family:"Big Shoulders Text", sans-serif; font-weight:700; font-size:0.95rem; letter-spacing:0.02em;}
+  .routing{color:var(--ink-faint); font-size:0.76rem;}
+  .dot{width:8px; height:8px; border-radius:50%; flex:none; background:var(--row-status);}
+  .offender{color:var(--ink-muted); font-size:0.8rem;}
+  .offender.none{color:var(--ink-faint); font-style:italic;}
+
+  footer{
+    border-top:1px solid var(--border);
+    padding-top:1.1rem;
+    display:flex;
+    flex-direction:column;
+    gap:0.35rem;
+  }
+  footer p{
+    margin:0;
+    font-size:0.78rem;
+    color:var(--ink-faint);
+    max-width:60em;
+  }
+  footer strong{color:var(--ink-muted); font-weight:600;}
+
+  @media (prefers-reduced-motion: reduce){
+    tbody tr, .kpi-card{transition:none;}
+  }
+
+  /* ---------- Tela dedicada da base ---------- */
+  #view-brasil, #view-base{
+    display:flex;
+    flex-direction:column;
+    gap:1.75rem;
+  }
+  .back-button{
+    align-self:flex-start;
+    display:inline-flex;
+    align-items:center;
+    gap:0.4rem;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.8rem;
+    font-weight:600;
+    color:var(--accent);
+    background:var(--accent-soft);
+    border:1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    border-radius:4px;
+    padding:0.45rem 0.75rem;
+    cursor:pointer;
+  }
+  .back-button:hover{ filter:brightness(1.05); }
+  .back-button:focus-visible{ outline:2px solid var(--accent); outline-offset:1px; }
+  .base-header{
+    padding-bottom:1.1rem;
+    border-bottom:1px solid var(--border);
+  }
+  .base-header h1{
+    font-family:"Big Shoulders Display", sans-serif;
+    font-weight:700;
+    font-size:clamp(1.8rem, 3.5vw, 2.4rem);
+    margin:0.15rem 0 0;
+    color:var(--ink);
+  }
+  .kpi-grid-modal{ grid-template-columns:repeat(auto-fit, minmax(160px,1fr)); }
+  .kpi-card-modal{ padding:0.85rem 0.95rem 1rem; }
+</style>
+
+<div class="page">
+
+  <div class="topbar">
+    <div>
+      <p class="eyebrow">Operações · Última Milha</p>
+      <h1>Painel Operacional Brasil</h1>
+      <p class="subtitle">Visão consolidada de SLA, insucesso, backlog e escoamento — leitura em um único lugar, com opção de abrir cada base individualmente.</p>
+    </div>
+    <div class="topbar-right">
+      <div class="theme-switch" role="group" aria-label="Tema da página">
+        <button type="button" data-theme-choice="auto">Auto</button>
+        <button type="button" data-theme-choice="light">Claro</button>
+        <button type="button" data-theme-choice="dark">Escuro</button>
+      </div>
+      <div class="badge-row">
+        <span class="badge">Dado real · Painel Operacional Brasil</span>
+        <span class="badge">Meta SLA 98,0%</span>
+      </div>
+      <span class="date-box num">Sexta, 28/08/2026 · dado de 27/08/2026 (D-1)</span>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var root = document.documentElement;
+    var buttons = Array.prototype.slice.call(document.querySelectorAll('.theme-switch button'));
+    function apply(choice){
+      if(choice === 'auto'){ root.removeAttribute('data-theme'); }
+      else { root.setAttribute('data-theme', choice); }
+      buttons.forEach(function(b){
+        var active = b.dataset.themeChoice === choice;
+        b.classList.toggle('active', active);
+        b.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      try{ localStorage.setItem('painel-operacional-theme', choice); }catch(e){}
+    }
+    var saved = 'auto';
+    try{ saved = localStorage.getItem('painel-operacional-theme') || 'auto'; }catch(e){}
+    apply(saved);
+    buttons.forEach(function(b){
+      b.addEventListener('click', function(){ apply(b.dataset.themeChoice); });
+    });
+  })();
+  </script>
+
+  <div id="view-base" class="hidden">
+    <button type="button" class="back-button" id="voltar-brasil-btn">← Voltar para visão Brasil</button>
+
+    <div class="base-header">
+      <p class="eyebrow" id="modal-base-eyebrow">Base</p>
+      <h1 id="modal-base-title">—</h1>
+      <p class="subtitle" id="modal-base-sub">—</p>
+    </div>
+
+    <div class="kpi-grid kpi-grid-modal">
+      <div class="kpi-card kpi-card-modal" id="m-card-sla">
+        <span class="kpi-label">SLA</span>
+        <span class="kpi-value num"><span id="m-sla-value">—</span><span style="font-size:0.95rem;">%</span></span>
+        <span class="kpi-meta"><span id="m-sla-delta" class="delta flat num">—</span></span>
+        <span class="kpi-meta" id="m-sla-meta"></span>
+        <span class="kpi-meta" id="m-sla-farol"></span>
+      </div>
+      <div class="kpi-card kpi-card-modal" id="m-card-ins">
+        <span class="kpi-label">Insucesso T-1</span>
+        <span class="kpi-value num" id="m-ins-value">—</span>
+        <span class="kpi-meta" id="m-ins-sub"></span>
+      </div>
+      <div class="kpi-card kpi-card-modal" id="m-card-bkl">
+        <span class="kpi-label">Backlog atual</span>
+        <span class="kpi-value num" id="m-bkl-value">—</span>
+        <span class="kpi-meta" id="m-bkl-sub"></span>
+      </div>
+      <div class="kpi-card kpi-card-modal" id="m-card-fc">
+        <span class="kpi-label">Recebido × Forecast</span>
+        <span class="kpi-value num"><span id="m-fc-value">—</span><span style="font-size:0.95rem;">%</span></span>
+        <span class="kpi-meta" id="m-fc-sub"></span>
+      </div>
+      <div class="kpi-card kpi-card-modal" id="m-card-ades">
+        <span class="kpi-label">Aderência (AG × PL)</span>
+        <span class="kpi-value num"><span id="m-ades-value">—</span><span style="font-size:0.95rem;">%</span></span>
+        <span class="kpi-meta" id="m-ades-sub">Recebido vs. Planejado</span>
+      </div>
+      <div class="kpi-card kpi-card-modal" id="m-card-esc">
+        <span class="kpi-label">Escoados hoje</span>
+        <span class="kpi-value num" id="m-esc-value">—</span>
+        <span class="kpi-meta" id="m-esc-sub"></span>
+      </div>
+      <div class="kpi-card kpi-card-modal" id="m-card-ex">
+        <span class="kpi-label">Expedição Plano × Real</span>
+        <span class="kpi-value num"><span id="m-ex-value">—</span><span style="font-size:0.95rem;">%</span></span>
+        <span class="kpi-meta" id="m-ex-sub">do planejado foi expedido</span>
+      </div>
+    </div>
+
+    <div class="card" id="m-ades-rotas-card" style="display:none;">
+      <div class="section-head" style="margin-bottom:0.5rem;">
+        <h3 class="section-title" style="font-size:0.92rem;">Aderência AG por rota</h3>
+        <span class="section-note" style="margin:0;">macros da base — mesmo farol do valor consolidado</span>
+      </div>
+      <div class="table-wrap">
+        <table class="causas-table">
+          <thead>
+            <tr>
+              <th>Rota</th>
+              <th class="num-col">Aderência</th>
+            </tr>
+          </thead>
+          <tbody id="m-ades-rotas-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <section>
+      <div class="section-head">
+        <h2 class="section-title">Tendência — últimos 10 dias</h2>
+      </div>
+      <div class="trend-grid">
+        <div class="trend-card">
+          <div class="trend-head">
+            <span class="trend-label">SLA</span>
+            <span class="trend-range" id="trend-sla-range"></span>
+          </div>
+          <div class="trend-chart-wrap">
+            <svg class="trend-chart" id="trend-sla" viewBox="0 0 320 96" preserveAspectRatio="none"></svg>
+            <div class="trend-tooltip" id="trend-sla-tooltip"></div>
+            <div class="trend-balloon" id="trend-sla-balloon"></div>
+          </div>
+          <p class="trend-hint" id="trend-sla-hint" style="display:none;">clique em qualquer ponto do gráfico pra ver a nota de ofensores daquele dia</p>
+        </div>
+        <div class="trend-card">
+          <div class="trend-head">
+            <span class="trend-label">Insucesso</span>
+            <span class="trend-range" id="trend-insucesso-range"></span>
+          </div>
+          <div class="trend-chart-wrap">
+            <svg class="trend-chart" id="trend-insucesso" viewBox="0 0 320 96" preserveAspectRatio="none"></svg>
+            <div class="trend-tooltip" id="trend-insucesso-tooltip"></div>
+            <div class="trend-balloon" id="trend-insucesso-balloon"></div>
+          </div>
+          <p class="trend-hint" id="trend-insucesso-hint" style="display:none;">clique em qualquer ponto do gráfico pra ver a quebra por motivo daquele dia</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2 class="section-title">Causas do insucesso</h2>
+        <span class="section-note" id="causas-meta-nota" style="margin:0;"></span>
+      </div>
+      <div class="card">
+        <div class="table-wrap">
+          <table class="causas-table" id="causas-table">
+            <thead>
+              <tr>
+                <th>Causa</th>
+                <th class="num-col">Pacotes</th>
+                <th class="num-col">Share do insucesso</th>
+                <th class="num-col">Impacto no SLA</th>
+              </tr>
+            </thead>
+            <tbody id="causas-body"></tbody>
+          </table>
+        </div>
+        <p id="causas-empty" class="causas-empty-text" style="display:none;">Detalhamento de causas ainda não integrado nesta versão.</p>
+      </div>
+    </section>
+  </div>
+
+  <div id="view-brasil">
+
+  <section>
+    <div class="section-head">
+      <h2 class="section-title">Resumo</h2>
+      <div class="scope-bar">
+        <label for="scope-select" class="scope-label">Abrir base</label>
+        <select id="scope-select" class="scope-select">
+          <option value="brasil">Selecionar base…</option>
+          <option value="FTZ">FTZ — 40,0%</option>
+          <option value="PQI">PQI — 70,0%</option>
+          <option value="VVL">VVL — 93,7%</option>
+          <option value="TQR">TQR — 95,2%</option>
+          <option value="FLO">FLO — 96,8%</option>
+          <option value="BTA">BTA — 97,2%</option>
+          <option value="BTF">BTF — 97,3%</option>
+          <option value="CSS">CSS — 97,5%</option>
+          <option value="DDM">DDM — 97,9%</option>
+          <option value="SJM">SJM — sem dado</option>
+          <option value="BAL">BAL — 98,2%</option>
+          <option value="TBS">TBS — 98,3%</option>
+          <option value="MCA">MCA — 98,4%</option>
+          <option value="NIT">NIT — 98,4%</option>
+          <option value="PSJ">PSJ — 98,6%</option>
+          <option value="GL3">GL3 — 98,6%</option>
+          <option value="SMT">SMT — 98,6%</option>
+          <option value="FO2">FO2 — 98,6%</option>
+          <option value="MCO + PPG">MCO+PPG — 98,7%</option>
+          <option value="LET">LET — 98,7%</option>
+          <option value="IBT + SCB">IBT+SCB — 98,7%</option>
+          <option value="IMB">IMB — 98,9%</option>
+          <option value="JVL">JVL — 99,0%</option>
+          <option value="LDA">LDA — 99,1%</option>
+          <option value="CPN + CJL + HTL">CPN+CJL+HTL — 99,1%</option>
+        </select>
+      </div>
+    </div>
+    <p class="section-note" id="scope-note">39 bases ativas · comparação vs. D-1</p>
+
+    <div class="kpi-grid">
+
+      <div class="kpi-card" data-brasil-status="warn">
+        <span class="kpi-label">SLA</span>
+        <span class="kpi-value num"><span id="sla-value">96,4</span><span style="font-size:1.1rem;">%</span></span>
+        <svg class="spark" width="100" height="24" viewBox="0 0 100 24" fill="none">
+          <polyline points="0,10 16,13 32,9 48,15 64,12 80,17 96,14" stroke="var(--warn)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="96" cy="14" r="2.5" fill="var(--warn)"/>
+        </svg>
+        <span class="kpi-meta"><span id="sla-delta" class="delta down num">▼ 0,3pp</span> <span id="sla-meta">vs. D-1 · faltam 1,6pp p/ meta</span></span>
+      </div>
+
+      <div class="kpi-card" data-brasil-status="warn">
+        <span class="kpi-label">Insucesso T-1</span>
+        <span class="kpi-value num" id="insucesso-value">3.184</span>
+        <span class="kpi-meta" id="insucesso-sub1">2,3% do volume expedido</span>
+        <span class="kpi-meta" id="insucesso-sub2"><span class="delta down num">▲ 0,4pp</span> vs. D-2</span>
+      </div>
+
+      <div class="kpi-card" data-brasil-status="bad">
+        <span class="kpi-label">Backlog atual</span>
+        <span class="kpi-value num" id="backlog-value">7.930</span>
+        <span class="kpi-meta" id="backlog-sub1">pacotes pendentes (D-1 + D0)</span>
+        <span class="kpi-meta" id="backlog-sub2"><span class="delta down num">▲ 12%</span> vs. D-1</span>
+      </div>
+
+      <div class="kpi-card" data-brasil-status="warn">
+        <span class="kpi-label">Forecast × Recebido</span>
+        <span class="kpi-value num"><span id="forecast-value">93</span><span style="font-size:1.1rem;">%</span></span>
+        <span class="kpi-meta">do volume previsto já chegou</span>
+        <span class="kpi-meta" id="forecast-sub2"><span class="delta down num">▼ 4pp</span> vs. D-1</span>
+      </div>
+
+      <div class="kpi-card" data-brasil-status="bad">
+        <span class="kpi-label">Expedição Plano × Real</span>
+        <span class="kpi-value num"><span id="expedicao-value">89</span><span style="font-size:1.1rem;">%</span></span>
+        <span class="kpi-meta">do planejado foi expedido</span>
+        <span class="kpi-meta" id="expedicao-sub2"><span class="delta down num">▼ 6pp</span> vs. D-1</span>
+      </div>
+
+      <div class="kpi-card" data-brasil-status="bad">
+        <span class="kpi-label" id="card6-label">Bases críticas</span>
+        <span class="kpi-value num" id="card6-value">9<span style="font-size:1.1rem; color:var(--ink-faint);"> / 44</span></span>
+        <span class="kpi-meta" id="card6-sub">abaixo de 95% de SLA hoje · <span class="delta down num">▲ 2</span> vs. D-1</span>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2 class="section-title">Faixas de SLA</h2>
+      <span class="section-note" style="margin:0;">distribuição das 39 bases por faixa hoje · clique numa faixa pra isolar essas bases na tabela abaixo</span>
+    </div>
+    <div class="card">
+      <div class="band-bar" id="band-bar" role="img" aria-label="Distribuição de bases por faixa de SLA — clique numa faixa pra filtrar">
+        <span data-band="b98" style="width:74.4%; background:var(--good);">29</span>
+        <span data-band="b97" style="width:10.3%; background:color-mix(in srgb, var(--good) 45%, var(--warn) 55%);">4</span>
+        <span data-band="b95" style="width:5.1%; background:var(--warn);">2</span>
+        <span data-band="bAbaixo" style="width:7.7%; background:var(--bad);">3</span>
+      </div>
+            <div class="band-legend" id="band-legend">
+        <div class="band-item" data-band="b98">
+          <span class="swatch" style="background:var(--good);"></span>
+          98–100% de SLA <span class="count num">29 bases</span>
+          <span class="wtrend num">real</span>
+        </div>
+        <div class="band-item" data-band="b97">
+          <span class="swatch" style="background:color-mix(in srgb, var(--good) 45%, var(--warn) 55%);"></span>
+          97–98% de SLA <span class="count num">4 bases</span>
+          <span class="wtrend num">real</span>
+        </div>
+        <div class="band-item" data-band="b95">
+          <span class="swatch" style="background:var(--warn);"></span>
+          95–97% de SLA <span class="count num">2 bases</span>
+          <span class="wtrend num">real</span>
+        </div>
+        <div class="band-item" data-band="bAbaixo">
+          <span class="swatch" style="background:var(--bad);"></span>
+          Abaixo de 95% <span class="count num">3 bases</span>
+          <span class="wtrend num">real</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2 class="section-title">Base a base</h2>
+      <span class="section-note" id="base-table-note" style="margin:0;">ordenado por criticidade · mostrando 25 de 39 bases · clique numa linha para detalhar</span>
+    </div>
+    <div class="card" style="padding:0.9rem 0.25rem 0.5rem;">
+      <div class="table-wrap">
+        <table id="base-table">
+          <thead>
+            <tr>
+              <th>Base</th>
+              <th class="num-col">SLA</th>
+              <th class="num-col">Δ D-1</th>
+              <th>Ofensor principal</th>
+              <th class="num-col">Insucesso T-1</th>
+              <th class="num-col">Backlog</th>
+              <th class="num-col">Recebido × Forecast</th>
+              <th class="num-col">Exped. Plano×Real</th>
+            </tr>
+          </thead>
+          <tbody>
+
+
+
+            <tr style="--row-status:var(--bad);" data-base="FTZ" data-band="bAbaixo" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">FTZ</span><span class="routing">Regional Centro Norte</span></div></td>
+              <td class="num-col num">40,00%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">—</td>
+              <td class="num-col num">1.924</td>
+              <td class="num-col num"><span class="num">1.182</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 1.071 · 110%</span></td>
+              <td class="num-col num">87%</td>
+            </tr>
+            <tr style="--row-status:var(--bad);" data-base="PQI" data-band="bAbaixo" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">PQI</span><span class="routing">Regional Centro Norte</span></div></td>
+              <td class="num-col num">70,00%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">—</td>
+              <td class="num-col num">3.747</td>
+              <td class="num-col num"><span class="num">5</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 4.895 · 0%</span></td>
+              <td class="num-col num">86%</td>
+            </tr>
+            <tr style="--row-status:var(--bad);" data-base="VVL" data-band="bAbaixo" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">VVL</span><span class="routing">Regional Sudeste</span></div></td>
+              <td class="num-col num">93,71%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">—</td>
+              <td class="num-col num">1.972</td>
+              <td class="num-col num"><span class="num">1.090</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 1.143 · 95%</span></td>
+              <td class="num-col num">98%</td>
+            </tr>
+            <tr style="--row-status:var(--warn);" data-base="TQR" data-band="b95" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">TQR</span><span class="routing">Regional Sudeste</span></div></td>
+              <td class="num-col num">95,18%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">—</td>
+              <td class="num-col num">8.269</td>
+              <td class="num-col num"><span class="num">4.376</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 8.201 · 53%</span></td>
+              <td class="num-col num">86%</td>
+            </tr>
+            <tr style="--row-status:var(--warn);" data-base="FLO" data-band="b95" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">FLO</span><span class="routing">Regional Sudeste</span></div></td>
+              <td class="num-col num">96,81%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">—</td>
+              <td class="num-col num">2.322</td>
+              <td class="num-col num"><span class="num">1.441</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 2.088 · 69%</span></td>
+              <td class="num-col num">79%</td>
+            </tr>
+            <tr style="--row-status:var(--warn);" data-base="BTA" data-band="b97" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">BTA</span><span class="routing">Regional Sudeste</span></div></td>
+              <td class="num-col num">97,17%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">—</td>
+              <td class="num-col num">2.508</td>
+              <td class="num-col num"><span class="num">1.477</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 1.355 · 109%</span></td>
+              <td class="num-col num">97%</td>
+            </tr>
+            <tr style="--row-status:var(--warn);" data-base="BTF" data-band="b97" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">BTF</span><span class="routing">Regional Sudeste</span></div></td>
+              <td class="num-col num">97,32%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">—</td>
+              <td class="num-col num">11.364</td>
+              <td class="num-col num"><span class="num">1.970</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 0 · —</span></td>
+              <td class="num-col num">92%</td>
+            </tr>
+            <tr style="--row-status:var(--warn);" data-base="CSS" data-band="b97" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">CSS</span><span class="routing">Regional Centro Norte</span></div></td>
+              <td class="num-col num">97,49%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">63</td>
+              <td class="num-col num">-1.697</td>
+              <td class="num-col num"><span class="num">2.108</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 2.134 · 99%</span></td>
+              <td class="num-col num">93%</td>
+            </tr>
+            <tr style="--row-status:var(--warn);" data-base="DDM" data-band="b97" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">DDM</span><span class="routing">Regional São Paulo Capital</span></div></td>
+              <td class="num-col num">97,87%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">3</td>
+              <td class="num-col num">1.338</td>
+              <td class="num-col num"><span class="num">6.337</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 7.822 · 81%</span></td>
+              <td class="num-col num">94%</td>
+            </tr>
+            <tr style="--row-status:var(--semdado);" data-base="SJM" data-band="semdado" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">SJM</span><span class="routing">Regional Sudeste</span></div></td>
+              <td class="num-col num">—</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">—</td>
+              <td class="num-col num">0</td>
+              <td class="num-col num"><span class="num">0</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 0 · —</span></td>
+              <td class="num-col num">0%</td>
+            </tr>
+            <tr style="--row-status:var(--good);" data-base="BAL" data-band="b98" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">BAL</span><span class="routing">Regional Sul</span></div></td>
+              <td class="num-col num">98,25%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">2</td>
+              <td class="num-col num">16.041</td>
+              <td class="num-col num"><span class="num">4.160</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 4.110 · 101%</span></td>
+              <td class="num-col num">95%</td>
+            </tr>
+            <tr style="--row-status:var(--good);" data-base="TBS" data-band="b98" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">TBS</span><span class="routing">Regional São Paulo Capital</span></div></td>
+              <td class="num-col num">98,30%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">2</td>
+              <td class="num-col num">63</td>
+              <td class="num-col num"><span class="num">6.664</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 6.533 · 102%</span></td>
+              <td class="num-col num">98%</td>
+            </tr>
+            <tr style="--row-status:var(--good);" data-base="MCA" data-band="b98" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">MCA</span><span class="routing">Regional São Paulo Capital</span></div></td>
+              <td class="num-col num">98,36%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">1</td>
+              <td class="num-col num">5.016</td>
+              <td class="num-col num"><span class="num">7.559</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 8.727 · 87%</span></td>
+              <td class="num-col num">95%</td>
+            </tr>
+            <tr style="--row-status:var(--good);" data-base="NIT" data-band="b98" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">NIT</span><span class="routing">Regional Sudeste</span></div></td>
+              <td class="num-col num">98,40%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">—</td>
+              <td class="num-col num">3.858</td>
+              <td class="num-col num"><span class="num">1.452</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 1.280 · 113%</span></td>
+              <td class="num-col num">87%</td>
+            </tr>
+            <tr style="--row-status:var(--good);" data-base="PSJ" data-band="b98" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">PSJ</span><span class="routing">Regional Sul</span></div></td>
+              <td class="num-col num">98,57%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">—</td>
+              <td class="num-col num">-2.410</td>
+              <td class="num-col num"><span class="num">2.077</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 2.841 · 73%</span></td>
+              <td class="num-col num">99%</td>
+            </tr>
+            <tr style="--row-status:var(--good);" data-base="GL3" data-band="b98" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">GL3</span><span class="routing">Regional São Paulo Capital</span></div></td>
+              <td class="num-col num">98,58%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">3</td>
+              <td class="num-col num">730</td>
+              <td class="num-col num"><span class="num">2.858</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 2.880 · 99%</span></td>
+              <td class="num-col num">95%</td>
+            </tr>
+            <tr style="--row-status:var(--good);" data-base="SMT" data-band="b98" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">SMT</span><span class="routing">Regional São Paulo Capital</span></div></td>
+              <td class="num-col num">98,60%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">2</td>
+              <td class="num-col num">1.313</td>
+              <td class="num-col num"><span class="num">5.492</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 5.155 · 107%</span></td>
+              <td class="num-col num">97%</td>
+            </tr>
+            <tr style="--row-status:var(--good);" data-base="FO2" data-band="b98" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">FO2</span><span class="routing">Regional São Paulo Capital</span></div></td>
+              <td class="num-col num">98,60%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">2</td>
+              <td class="num-col num">1.914</td>
+              <td class="num-col num"><span class="num">4.702</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 5.141 · 91%</span></td>
+              <td class="num-col num">98%</td>
+            </tr>
+            <tr style="--row-status:var(--good);" data-base="MCO + PPG" data-band="b98" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">MCO+PPG</span><span class="routing">Regional Sul</span></div></td>
+              <td class="num-col num">98,66%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">—</td>
+              <td class="num-col num">4.990</td>
+              <td class="num-col num"><span class="num">1.838</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 2.050 · 90%</span></td>
+              <td class="num-col num">98%</td>
+            </tr>
+            <tr style="--row-status:var(--good);" data-base="LET" data-band="b98" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">LET</span><span class="routing">Regional Sudeste</span></div></td>
+              <td class="num-col num">98,68%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">—</td>
+              <td class="num-col num">4.771</td>
+              <td class="num-col num"><span class="num">1.978</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 1.920 · 103%</span></td>
+              <td class="num-col num">91%</td>
+            </tr>
+            <tr style="--row-status:var(--good);" data-base="IBT + SCB" data-band="b98" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">IBT+SCB</span><span class="routing">Regional Sul</span></div></td>
+              <td class="num-col num">98,73%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">—</td>
+              <td class="num-col num">-4.909</td>
+              <td class="num-col num"><span class="num">3.359</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 4.382 · 77%</span></td>
+              <td class="num-col num">97%</td>
+            </tr>
+            <tr style="--row-status:var(--good);" data-base="IMB" data-band="b98" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">IMB</span><span class="routing">Regional Centro Norte</span></div></td>
+              <td class="num-col num">98,87%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">—</td>
+              <td class="num-col num">4.919</td>
+              <td class="num-col num"><span class="num">183</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 174 · 105%</span></td>
+              <td class="num-col num">99%</td>
+            </tr>
+            <tr style="--row-status:var(--good);" data-base="JVL" data-band="b98" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">JVL</span><span class="routing">Regional Sul</span></div></td>
+              <td class="num-col num">99,00%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">4</td>
+              <td class="num-col num">586</td>
+              <td class="num-col num"><span class="num">79</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 8.933 · 1%</span></td>
+              <td class="num-col num">98%</td>
+            </tr>
+            <tr style="--row-status:var(--good);" data-base="LDA" data-band="b98" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">LDA</span><span class="routing">Regional Sul</span></div></td>
+              <td class="num-col num">99,06%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">1</td>
+              <td class="num-col num">-258</td>
+              <td class="num-col num"><span class="num">1.893</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 7.839 · 24%</span></td>
+              <td class="num-col num">0%</td>
+            </tr>
+            <tr style="--row-status:var(--good);" data-base="CPN + CJL + HTL" data-band="b98" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">CPN+CJL+HTL</span><span class="routing">Regional Sul</span></div></td>
+              <td class="num-col num">99,13%</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">68</td>
+              <td class="num-col num">-4.301</td>
+              <td class="num-col num"><span class="num">4.437</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 4.582 · 97%</span></td>
+              <td class="num-col num">99%</td>
+            </tr>
+
+
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>Dado real</strong> — os números acima vêm da planilha "Painel Operacional Brasil" (Resumo, Faixas de SLA, Base a base), atualizada pelo robô que roda todo dia às 08:30. Mostrando 25 das 39 bases hoje ativas, ordenadas por criticidade.</p>
+    <p>Os gráficos de tendência (SLA/Insucesso por base) ainda usam série sintética terminando no valor real de hoje — a versão totalmente ao vivo lê os pontos direto da aba Histórico, que já está acumulando um dia por execução. Clique em qualquer base da tabela pra abrir a tela dedicada dela (causas + tendência).</p>
+  </footer>
+
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var META = 98;
+
+  var BASES = {
+    FTZ:{routing:'Regional Centro Norte', band:'bAbaixo', sla:40.0, delta:null, insucesso:0, backlog:1924, forecast:1071, recebido:1182, forecastRec:110, escoados:1196, expedicao:87, causas:[]},
+    PQI:{routing:'Regional Centro Norte', band:'bAbaixo', sla:70.0, delta:null, insucesso:0, backlog:3747, forecast:4895, recebido:5, forecastRec:0, escoados:781, expedicao:86, causas:[]},
+    VVL:{routing:'Regional Sudeste', band:'bAbaixo', sla:93.71, delta:null, insucesso:0, backlog:1972, forecast:1143, recebido:1090, forecastRec:95, escoados:1082, expedicao:98, causas:[]},
+    TQR:{routing:'Regional Sudeste', band:'b95', sla:95.18, delta:null, insucesso:0, backlog:8269, forecast:8201, recebido:4376, forecastRec:53, escoados:6300, expedicao:86, causas:[]},
+    FLO:{routing:'Regional Sudeste', band:'b95', sla:96.81, delta:null, insucesso:0, backlog:2322, forecast:2088, recebido:1441, forecastRec:69, escoados:1552, expedicao:79, causas:[]},
+    BTA:{routing:'Regional Sudeste', band:'b97', sla:97.17, delta:null, insucesso:0, backlog:2508, forecast:1355, recebido:1477, forecastRec:109, escoados:1446, expedicao:97, causas:[]},
+    BTF:{routing:'Regional Sudeste', band:'b97', sla:97.32, delta:null, insucesso:0, backlog:11364, forecast:0, recebido:1970, forecastRec:0, escoados:null, expedicao:92, causas:[]},
+    CSS:{routing:'Regional Centro Norte', band:'b97', sla:97.49, delta:null, insucesso:63, backlog:-1697, forecast:2134, recebido:2108, forecastRec:99, escoados:2284, expedicao:93, causas:[]},
+    DDM:{routing:'Regional São Paulo Capital', band:'b97', sla:97.87, delta:null, insucesso:3, backlog:1338, forecast:7822, recebido:6337, forecastRec:81, escoados:6234, aderenciaRotas:[['DDM1',0.00], ['DDM2',80.00], ['DDM3',55.56], ['DDM4',75.00], ['DDM5',null], ['DDM6',100.00]], aderencia:62.11, expedicao:94, insucessoPct:3.12, metaInsucesso:1.82, causas:[{motivo:"Destinatário Ausente", pacotes:93, share:44.6, impacto:1.39}, {motivo:"Endereço errado", pacotes:101, share:48.4, impacto:1.51}, {motivo:"Recusado pelo Destinatário", pacotes:15, share:7.1, impacto:0.22}], slaNotasPorDia:{0:"Perca de 1,09em XD, MM, Subida de malha \nCom Cajamar com maior ofensor depois Logipontos de SP \n\nAtraso subida de malha 25 pacotes 0,40% \nAg - Processamento 25 0,40% \nMM - Não classificado 22 0,35%\nXD - Atraso em processamento 21  0,34%"}},
+    SJM:{routing:'Regional Sudeste', band:'semdado', sla:null, delta:null, insucesso:0, backlog:0, forecast:0, recebido:0, forecastRec:0, escoados:null, expedicao:0, causas:[]},
+    BAL:{routing:'Regional Sul', band:'b98', sla:98.25, delta:null, insucesso:2, backlog:16041, forecast:4110, recebido:4160, forecastRec:101, escoados:4122, expedicao:95, insucessoPct:1.63, metaInsucesso:2.14, causas:[{motivo:"Destinatário Ausente", pacotes:41, share:52.8, impacto:0.86}, {motivo:"Endereço errado", pacotes:34, share:43.6, impacto:0.71}, {motivo:"Recusado pelo Destinatário", pacotes:3, share:3.7, impacto:0.06}]},
+    TBS:{routing:'Regional São Paulo Capital', band:'b98', sla:98.3, delta:null, insucesso:2, backlog:63, forecast:6533, recebido:6664, forecastRec:102, escoados:6559, aderenciaRotas:[['TBS1',75.00], ['TBS2',100.00], ['TBS3',100.00], ['TBS4',200.00], ['TBS5',81.82], ['TBS6',75.00], ['TBS7',null]], aderencia:105.30, expedicao:98, insucessoPct:2.17, metaInsucesso:2.05, causas:[{motivo:"Destinatário Ausente", pacotes:46, share:30.9, impacto:0.67}, {motivo:"Endereço errado", pacotes:93, share:62.2, impacto:1.35}, {motivo:"Recusado pelo Destinatário", pacotes:10, share:6.9, impacto:0.15}], slaNotasPorDia:{0:"Taboão da Serra Ficou com 127 Pacotes ofensore\n\nMaior ofensor foi Opa Entregador com 0,91%\n\nEm Seguida foi o Atraso Malha com  0,66%"}},
+    MCA:{routing:'Regional São Paulo Capital', band:'b98', sla:98.36, delta:null, insucesso:1, backlog:5016, forecast:8727, recebido:7559, forecastRec:87, escoados:7416, aderenciaRotas:[['MCA1',100.00], ['MCA2',100.00], ['MCA3',100.00], ['MCA4',100.00], ['MCA5',100.00]], aderencia:100.00, expedicao:95, insucessoPct:1.30, metaInsucesso:2.14, causas:[{motivo:"Destinatário Ausente", pacotes:44, share:43.1, impacto:0.56}, {motivo:"Endereço errado", pacotes:43, share:42.3, impacto:0.55}, {motivo:"Recusado pelo Destinatário", pacotes:15, share:14.6, impacto:0.19}], slaNotasPorDia:{0:"115 pacotes ofensores\n\nAtraso SM - 27 - 0,38% Chegaram hoje em MCA\n\nXD Processamento - 18 - 0,25%\nNão chegaram"}},
+    NIT:{routing:'Regional Sudeste', band:'b98', sla:98.4, delta:null, insucesso:0, backlog:3858, forecast:1280, recebido:1452, forecastRec:113, escoados:1428, expedicao:87, causas:[]},
+    PSJ:{routing:'Regional Sul', band:'b98', sla:98.57, delta:null, insucesso:0, backlog:-2410, forecast:2841, recebido:2077, forecastRec:73, escoados:2033, expedicao:99, causas:[]},
+    GL3:{routing:'Regional São Paulo Capital', band:'b98', sla:98.58, delta:null, insucesso:3, backlog:730, forecast:2880, recebido:2858, forecastRec:99, escoados:2830, aderenciaRotas:[['GL31',80.00], ['GL32',100.00], ['GL33',100.00], ['GL34',100.00], ['GL35',0.00]], aderencia:76.00, expedicao:95, insucessoPct:2.67, metaInsucesso:1.99, causas:[{motivo:"Destinatário Ausente", pacotes:31, share:39.3, impacto:1.05}, {motivo:"Endereço errado", pacotes:42, share:53.2, impacto:1.42}, {motivo:"Recusado pelo Destinatário", pacotes:6, share:7.5, impacto:0.20}], slaNotasPorDia:{0:"Tivemos 41 pacotes Ofensores\n28 Em atraso subida de malha\n04 com o entregador Fabio Castro da Silva ( IQVELO ) sem tentativa"}},
+    SMT:{routing:'Regional São Paulo Capital', band:'b98', sla:98.6, delta:null, insucesso:2, backlog:1313, forecast:5155, recebido:5492, forecastRec:107, escoados:5456, aderenciaRotas:[['SMT1',90.91], ['SMT2',100.00], ['SMT3',60.00], ['SMT4',100.00], ['SMT5',85.71]], aderencia:87.32, expedicao:97, insucessoPct:2.18, metaInsucesso:1.94, causas:[{motivo:"Destinatário Ausente", pacotes:61, share:48.6, impacto:1.06}, {motivo:"Endereço errado", pacotes:55, share:44.0, impacto:0.96}, {motivo:"Recusado pelo Destinatário", pacotes:9, share:7.3, impacto:0.16}], slaNotasPorDia:{0:"Atraso subida de malha\t33\t0.58%\nXD - Atraso em processamento\t19\t0.34%\nDriver MM - Atraso durante transferencia\t10\t0.18%\nMM - Não classificado\t7\t0.12%\nDriver - Atraso na tentativa de entrega\t6\t0.11%\nAg - Processamento\t5\t0.09%\nAg - Reprocessamento\t1\t0.02%\nLm - Expedição\t1\t0.02%\nLm - Reexpedição\t1\t0.02%"}},
+    FO2:{routing:'Regional São Paulo Capital', band:'b98', sla:98.6, delta:null, insucesso:2, backlog:1914, forecast:5141, recebido:4702, forecastRec:91, escoados:4632, aderenciaRotas:[['FO21',80.00], ['FO22',100.00], ['FO23',100.00], ['FO24',100.00]], aderencia:94.74, expedicao:98, insucessoPct:2.25, metaInsucesso:1.59, causas:[{motivo:"Destinatário Ausente", pacotes:43, share:40.0, impacto:0.90}, {motivo:"Endereço errado", pacotes:60, share:55.6, impacto:1.25}, {motivo:"Recusado pelo Destinatário", pacotes:5, share:4.4, impacto:0.10}], slaNotasPorDia:{0:"Atraso subida de malha com 28 pacotes impacto de 0.63% no SLA. 27 pacotes de origem Loggiponto.\nDriver MM atraso durante transferencia com 9 pacotes impacto de 0.20% no SLA.\nXD atraso no processamento com 9 pacotes impacto de 0.20% no SLA.\nMM não classificado com 8 pacotes impacto de 0.18% no SLA."}},
+    'MCO + PPG':{routing:'Regional Sul', band:'b98', sla:98.66, delta:null, insucesso:0, backlog:4990, forecast:2050, recebido:1838, forecastRec:90, escoados:1853, expedicao:98, causas:[]},
+    LET:{routing:'Regional Sudeste', band:'b98', sla:98.68, delta:null, insucesso:0, backlog:4771, forecast:1920, recebido:1978, forecastRec:103, escoados:2064, expedicao:91, causas:[]},
+    'IBT + SCB':{routing:'Regional Sul', band:'b98', sla:98.73, delta:null, insucesso:0, backlog:-4909, forecast:4382, recebido:3359, forecastRec:77, escoados:3332, expedicao:97, causas:[]},
+    IMB:{routing:'Regional Centro Norte', band:'b98', sla:98.87, delta:null, insucesso:0, backlog:4919, forecast:174, recebido:183, forecastRec:105, escoados:173, expedicao:99, causas:[]},
+    JVL:{routing:'Regional Sul', band:'b98', sla:99.0, delta:null, insucesso:4, backlog:586, forecast:8933, recebido:79, forecastRec:1, escoados:643, expedicao:98, insucessoPct:4.41, metaInsucesso:2.64, causas:[{motivo:"Destinatário Ausente", pacotes:15, share:51.7, impacto:2.28}, {motivo:"Endereço errado", pacotes:13, share:44.9, impacto:1.98}, {motivo:"Recusado pelo Destinatário", pacotes:1, share:3.4, impacto:0.15}]},
+    LDA:{routing:'Regional Sul', band:'b98', sla:99.06, delta:null, insucesso:1, backlog:-258, forecast:7839, recebido:1893, forecastRec:24, escoados:2391, expedicao:0, insucessoPct:0.72, metaInsucesso:1.33, causas:[{motivo:"Destinatário Ausente", pacotes:3, share:25.0, impacto:0.18}, {motivo:"Endereço errado", pacotes:8, share:66.7, impacto:0.48}, {motivo:"Recusado pelo Destinatário", pacotes:1, share:8.3, impacto:0.06}, {motivo:"Cliente ausente", pacotes:2, share:0.0, impacto:null}, {motivo:"Recusado pelo cliente", pacotes:1, share:0.0, impacto:null}]},
+    'CPN + CJL + HTL':{routing:'Regional Sul', band:'b98', sla:99.13, delta:null, insucesso:68, backlog:-4301, forecast:4582, recebido:4437, forecastRec:97, escoados:4346, expedicao:99, causas:[]}
+  };
+
+  var BRASIL = {sla:97.47, delta:null, insucesso:421, insucessoDeltaPct:null, backlog:86012, backlogDeltaPct:null, forecast:125928, recebido:87975, forecastRec:70, expedicao:107, criticas:3, criticasDelta:0};
+
+  // ---- Tendência: série pseudo-aleatória determinística (seed = código da
+  // base) terminando no valor real de hoje — só pra mockup; a versão final
+  // lê os pontos direto da aba Histórico, que cresce um dia por execução.
+  function hashSeed(str){
+    var h = 2166136261;
+    for(var i=0;i<str.length;i++){ h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return h >>> 0;
+  }
+  function mulberry32(a){
+    return function(){
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      var t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function gerarSerie(valorFinal, seedTexto, volatilidade, pontos){
+    var rng = mulberry32(hashSeed(seedTexto));
+    var serie = new Array(pontos);
+    serie[pontos-1] = valorFinal;
+    var atual = valorFinal;
+    for(var i=pontos-2;i>=0;i--){
+      atual = atual + (rng()-0.5) * volatilidade;
+      serie[i] = atual;
+    }
+    return serie;
+  }
+
+  function renderTrendChart(svgEl, tooltipEl, serie, opts){
+    var W = 320, H = 96, padL = 4, padR = 4, padT = 10, padB = 16;
+    var min = Math.min.apply(null, serie), max = Math.max.apply(null, serie);
+    if(min === max){ min -= 1; max += 1; }
+    var span = max - min;
+    min -= span * 0.12; max += span * 0.12;
+    var n = serie.length;
+    function x(i){ return padL + (i/(n-1)) * (W - padL - padR); }
+    function y(v){ return padT + (1 - (v-min)/(max-min)) * (H - padT - padB); }
+
+    var pts = serie.map(function(v,i){ return [x(i), y(v)]; });
+    var linePath = pts.map(function(p,i){ return (i===0?'M':'L') + p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' ');
+    var areaPath = linePath + ' L' + pts[n-1][0].toFixed(1) + ',' + (H-padB).toFixed(1) + ' L' + pts[0][0].toFixed(1) + ',' + (H-padB).toFixed(1) + ' Z';
+
+    var gridLines = '';
+    var nGrid = 3;
+    for(var g=0; g<=nGrid; g++){
+      var gy = padT + (g/nGrid) * (H - padT - padB);
+      gridLines += '<line class="grid-line" x1="'+padL+'" y1="'+gy.toFixed(1)+'" x2="'+(W-padR)+'" y2="'+gy.toFixed(1)+'"/>';
+    }
+
+    var last = pts[n-1];
+    var valorLabel = opts.fmt(serie[n-1]);
+    var labelAnchor = last[0] > W - 46 ? 'end' : 'start';
+    var labelDx = last[0] > W - 46 ? -8 : 8;
+
+    svgEl.innerHTML =
+      gridLines +
+      '<path class="area" d="'+areaPath+'" fill="'+opts.color+'"/>' +
+      '<path class="line" d="'+linePath+'" stroke="'+opts.color+'"/>' +
+      '<circle class="endpoint" cx="'+last[0].toFixed(1)+'" cy="'+last[1].toFixed(1)+'" r="3.5" fill="'+opts.color+'"/>' +
+      '<text class="value-label" x="'+(last[0]+labelDx).toFixed(1)+'" y="'+(last[1]-6).toFixed(1)+'" text-anchor="'+labelAnchor+'" fill="'+opts.color+'">'+valorLabel+'</text>' +
+      '<line class="hover-line" x1="0" y1="'+padT+'" x2="0" y2="'+(H-padB)+'"/>' +
+      '<circle class="hover-dot" r="4" fill="'+opts.color+'"/>';
+
+    var hoverLine = svgEl.querySelector('.hover-line');
+    var hoverDot = svgEl.querySelector('.hover-dot');
+
+    function mostrarHover(clientX){
+      var rect = svgEl.getBoundingClientRect();
+      var relX = (clientX - rect.left) / rect.width * W;
+      var i = Math.round((relX - padL) / (W - padL - padR) * (n-1));
+      i = Math.max(0, Math.min(n-1, i));
+      var p = pts[i];
+      hoverLine.setAttribute('x1', p[0]); hoverLine.setAttribute('x2', p[0]);
+      hoverLine.style.opacity = 1;
+      hoverDot.setAttribute('cx', p[0]); hoverDot.setAttribute('cy', p[1]);
+      hoverDot.style.opacity = 1;
+      var diasAtras = (n-1) - i;
+      var rotulo = diasAtras === 0 ? 'hoje (D-1)' : ('D-' + (diasAtras+1));
+      tooltipEl.textContent = rotulo + ' · ' + opts.fmt(serie[i]);
+      tooltipEl.style.opacity = 1;
+      var svgRect = svgEl.getBoundingClientRect();
+      var px = svgRect.left + (p[0]/W) * svgRect.width;
+      var py = svgRect.top + (p[1]/H) * svgRect.height;
+      tooltipEl.style.left = (px - svgRect.left) + 'px';
+      tooltipEl.style.top = (py - svgRect.top) + 'px';
+    }
+    function esconderHover(){
+      hoverLine.style.opacity = 0;
+      hoverDot.style.opacity = 0;
+      tooltipEl.style.opacity = 0;
+    }
+    svgEl.onmousemove = function(e){ mostrarHover(e.clientX); };
+    svgEl.onmouseleave = esconderHover;
+
+    if(opts.onPointClick){
+      svgEl.style.cursor = 'pointer';
+      svgEl.onclick = function(e){
+        var rect = svgEl.getBoundingClientRect();
+        var relX = (e.clientX - rect.left) / rect.width * W;
+        var i = Math.round((relX - padL) / (W - padL - padR) * (n-1));
+        i = Math.max(0, Math.min(n-1, i));
+        opts.onPointClick(i, pts[i], e);
+      };
+    } else {
+      svgEl.style.cursor = '';
+      svgEl.onclick = null;
+    }
+  }
+
+  function fmt1(n){
+    if(n === null || n === undefined) return '—';
+    var v = Math.round(n*10)/10;
+    if(Object.is(v,-0)) v = 0;
+    return v.toFixed(1).replace('.', ',');
+  }
+  // % exata (2 casas) — usada pro Insucesso, que vem da nota "Quebra por
+  // motivo" com 2 casas na origem (ex.: "1,02% - 36 Destinatário Ausente").
+  // fmt1 arredondava isso pra 1 casa; aqui mantemos a precisão da fonte.
+  function fmt2(n){
+    if(n === null || n === undefined) return '—';
+    var v = Math.round(n*100)/100;
+    if(Object.is(v,-0)) v = 0;
+    return v.toFixed(2).replace('.', ',');
+  }
+  function fmtInt(n){ return Math.round(n).toLocaleString('pt-BR'); }
+
+  // Preenche o balão de "quebra por motivo" do gráfico de Insucesso pro dia
+  // clicado. ``diaDados`` é {total, motivos:[{motivo,pacotes,impacto}]} (uma
+  // entrada de data.causasPorDia) — None/sem motivos quando esse dia não
+  // tem nota real (dias fora de 20-25/08, ou 23/08 que não teve nota
+  // colada). Base sem causasPorDia nenhuma (fora das 12 elegíveis) nem
+  // chega a ligar o clique — ver onPointClick mais abaixo.
+  function popularBalaoInsucesso(diaDados, rotuloDia, metaInsucesso){
+    var el = els.trendInsucessoBalloon;
+    if(!diaDados || !diaDados.motivos || !diaDados.motivos.length){
+      el.innerHTML = '<button type="button" class="trend-balloon-close" aria-label="Fechar">✕</button>'
+        + '<span class="trend-balloon-title">' + rotuloDia + '</span>'
+        + '<div class="trend-balloon-row" style="border-top:none; color:var(--ink-faint); font-style:italic;">sem nota de causas nesse dia</div>';
+      return;
+    }
+    var total = diaDados.total;
+    var temMeta = total != null && metaInsucesso != null;
+    var okMeta = temMeta && total <= metaInsucesso;
+    var tituloTxt = rotuloDia + (total != null ? (' · ' + fmt2(total) + '%' + (temMeta ? (' (meta ' + fmt2(metaInsucesso) + '%)') : '')) : '');
+    var selo = temMeta ? (' ' + (okMeta ? '🟢' : '🔴')) : '';
+    var linhas = diaDados.motivos.map(function(c){
+      return '<div class="trend-balloon-row"><span>' + c.motivo + '</span><span class="num">'
+        + (c.impacto != null ? (fmt2(c.impacto) + '%') : '—') + ' · ' + fmtInt(c.pacotes) + '</span></div>';
+    }).join('');
+    el.innerHTML = '<button type="button" class="trend-balloon-close" aria-label="Fechar">✕</button>'
+      + '<span class="trend-balloon-title">' + tituloTxt + selo + '</span>'
+      + linhas;
+  }
+  // Balão de nota de ofensores do gráfico de SLA — diferente do de
+  // Insucesso, essa nota é texto LIVRE (cada analista escreve do seu jeito
+  // na aba de origem, sem formato fixo), então só exibimos como veio, sem
+  // tentar tabular. rotuloDia é o mesmo "Hoje (D-1)"/"D-N" do Insucesso.
+  function escapeHtml(s){
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+  function popularBalaoSla(texto, rotuloDia){
+    var el = els.trendSlaBalloon;
+    if(!texto){
+      el.innerHTML = '<button type="button" class="trend-balloon-close" aria-label="Fechar">✕</button>'
+        + '<span class="trend-balloon-title">' + rotuloDia + '</span>'
+        + '<div class="trend-balloon-row" style="border-top:none; color:var(--ink-faint); font-style:italic;">sem nota de ofensores nesse dia</div>';
+      return;
+    }
+    el.innerHTML = '<button type="button" class="trend-balloon-close" aria-label="Fechar">✕</button>'
+      + '<span class="trend-balloon-title">' + rotuloDia + '</span>'
+      + '<div class="trend-balloon-row" style="border-top:none; white-space:pre-line;">' + escapeHtml(texto.trim()) + '</div>';
+  }
+  function farol(sla){ return sla>=98 ? 'good' : (sla>=95 ? 'warn' : 'bad'); }
+  var FAROL_LABEL = {good:'🟢 dentro da meta', warn:'🟡 atenção', bad:'🔴 crítico', sem_dado:'— sem dado'};
+  function deltaClass(v){ return v>0 ? 'up' : (v<0 ? 'down' : 'flat'); }
+  function arrow(v){ return v>0 ? '▲' : (v<0 ? '▼' : ''); }
+
+  var els = {
+    scopeSelect: document.getElementById('scope-select'),
+    slaValue: document.getElementById('sla-value'),
+    slaDelta: document.getElementById('sla-delta'),
+    slaMeta: document.getElementById('sla-meta'),
+    insValue: document.getElementById('insucesso-value'),
+    insSub1: document.getElementById('insucesso-sub1'),
+    insSub2: document.getElementById('insucesso-sub2'),
+    bklValue: document.getElementById('backlog-value'),
+    bklSub1: document.getElementById('backlog-sub1'),
+    bklSub2: document.getElementById('backlog-sub2'),
+    fcValue: document.getElementById('forecast-value'),
+    fcSub2: document.getElementById('forecast-sub2'),
+    exValue: document.getElementById('expedicao-value'),
+    exSub2: document.getElementById('expedicao-sub2'),
+    c6Label: document.getElementById('card6-label'),
+    c6Value: document.getElementById('card6-value'),
+    c6Sub: document.getElementById('card6-sub'),
+
+    viewBrasil: document.getElementById('view-brasil'),
+    viewBase: document.getElementById('view-base'),
+    voltarBtn: document.getElementById('voltar-brasil-btn'),
+    modalEyebrow: document.getElementById('modal-base-eyebrow'),
+    modalTitle: document.getElementById('modal-base-title'),
+    modalSub: document.getElementById('modal-base-sub'),
+    mCardSla: document.getElementById('m-card-sla'),
+    mSlaValue: document.getElementById('m-sla-value'),
+    mSlaDelta: document.getElementById('m-sla-delta'),
+    mSlaMeta: document.getElementById('m-sla-meta'),
+    mSlaFarol: document.getElementById('m-sla-farol'),
+    mInsValue: document.getElementById('m-ins-value'),
+    mInsSub: document.getElementById('m-ins-sub'),
+    mBklValue: document.getElementById('m-bkl-value'),
+    mBklSub: document.getElementById('m-bkl-sub'),
+    mFcValue: document.getElementById('m-fc-value'),
+    mFcSub: document.getElementById('m-fc-sub'),
+    mCardAdes: document.getElementById('m-card-ades'),
+    mAdesValue: document.getElementById('m-ades-value'),
+    mAdesSub: document.getElementById('m-ades-sub'),
+    mAdesRotasCard: document.getElementById('m-ades-rotas-card'),
+    mAdesRotasBody: document.getElementById('m-ades-rotas-body'),
+    mEscValue: document.getElementById('m-esc-value'),
+    mEscSub: document.getElementById('m-esc-sub'),
+    mExValue: document.getElementById('m-ex-value'),
+    mExSub: document.getElementById('m-ex-sub'),
+    causasMetaNota: document.getElementById('causas-meta-nota'),
+    causasBody: document.getElementById('causas-body'),
+    causasEmpty: document.getElementById('causas-empty'),
+    causasTable: document.getElementById('causas-table'),
+    trendSla: document.getElementById('trend-sla'),
+    trendSlaTooltip: document.getElementById('trend-sla-tooltip'),
+    trendSlaRange: document.getElementById('trend-sla-range'),
+    trendSlaBalloon: document.getElementById('trend-sla-balloon'),
+    trendSlaHint: document.getElementById('trend-sla-hint'),
+    trendInsucesso: document.getElementById('trend-insucesso'),
+    trendInsucessoTooltip: document.getElementById('trend-insucesso-tooltip'),
+    trendInsucessoRange: document.getElementById('trend-insucesso-range'),
+    trendInsucessoBalloon: document.getElementById('trend-insucesso-balloon'),
+    trendInsucessoHint: document.getElementById('trend-insucesso-hint')
+  };
+
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.kpi-grid:not(.kpi-grid-modal) .kpi-card'));
+
+  // ---- Resumo (topo) — sempre mostra o Brasil consolidado; não muda mais
+  // ao clicar numa base (isso agora abre o painel dedicado, ver abaixo).
+  function renderBrasil(){
+    var data = BRASIL;
+
+    els.slaValue.textContent = fmt1(data.sla);
+    els.slaDelta.innerHTML = (arrow(data.delta) + ' ' + fmt1(Math.abs(data.delta)) + 'pp').trim();
+    els.slaDelta.className = 'delta ' + deltaClass(data.delta) + ' num';
+    var gap = META - data.sla;
+    els.slaMeta.textContent = gap > 0.05 ? ('vs. D-1 · faltam ' + fmt1(gap) + 'pp p/ meta') : 'vs. D-1 · dentro da meta de 98%';
+
+    els.insValue.textContent = fmtInt(data.insucesso);
+    els.insSub1.textContent = fmt1(data.insucesso / 46376 * 100) + '% do volume escoado';
+    var insDeltaCls = data.insucessoDeltaPct > 0 ? 'down' : (data.insucessoDeltaPct < 0 ? 'up' : 'flat');
+    var insSeta = data.insucessoDeltaPct > 0 ? '▲' : (data.insucessoDeltaPct < 0 ? '▼' : '');
+    els.insSub2.innerHTML = '<span class="delta ' + insDeltaCls + ' num">' + insSeta + ' ' + fmt1(Math.abs(data.insucessoDeltaPct)) + '%</span> vs. D-2';
+
+    els.bklValue.textContent = fmtInt(data.backlog);
+    els.bklSub1.textContent = 'pacotes pendentes (D-1 + D0)';
+    var bklDeltaCls = data.backlogDeltaPct > 0 ? 'down' : (data.backlogDeltaPct < 0 ? 'up' : 'flat');
+    var bklSeta = data.backlogDeltaPct > 0 ? '▲' : (data.backlogDeltaPct < 0 ? '▼' : '');
+    els.bklSub2.innerHTML = '<span class="delta ' + bklDeltaCls + ' num">' + bklSeta + ' ' + fmt1(Math.abs(data.backlogDeltaPct)) + '%</span> vs. D-1';
+
+    els.fcValue.textContent = data.forecastRec;
+
+    els.exValue.textContent = data.expedicao;
+
+    els.c6Value.innerHTML = data.criticas + '<span style="font-size:1.1rem; color:var(--ink-faint);"> / 39</span>';
+    els.c6Sub.innerHTML = 'abaixo de 95% de SLA hoje · <span class="delta down num">▲ ' + data.criticasDelta + '</span> vs. D-1';
+
+    cards.forEach(function(c){ c.style.setProperty('--status', 'var(--' + c.dataset.brasilStatus + ')'); });
+  }
+
+  // ---- Tela dedicada da base: substitui a tela do Brasil por inteiro (não
+  // é um drawer/modal por cima) — com seus próprios KPIs, tendência e causas,
+  // e um botão explícito pra voltar.
+  var baseAberta = null;
+  var linhaQueAbriu = null;
+
+  function abrirBase(scope){
+    var data = BASES[scope];
+    if(!data) return;
+    baseAberta = scope;
+
+    els.modalEyebrow.textContent = data.routing;
+    els.modalTitle.textContent = scope;
+    els.modalSub.textContent = data.sla == null
+      ? 'sem dado hoje · comparação vs. D-1'
+      : 'SLA ' + fmt1(data.sla) + '% · comparação vs. D-1';
+
+    var farolChave = data.sla == null ? 'sem_dado' : farol(data.sla);
+    els.mCardSla.style.setProperty('--status', 'var(--' + (farolChave === 'sem_dado' ? 'ink-faint' : farolChave) + ')');
+    els.mSlaFarol.innerHTML = '<span class="delta ' + (farolChave === 'good' ? 'up' : (farolChave === 'sem_dado' ? 'flat' : 'down')) + ' num">' + FAROL_LABEL[farolChave] + '</span>';
+
+    els.mSlaValue.textContent = fmt1(data.sla);
+    if(data.delta === null || data.delta === undefined){
+      els.mSlaDelta.textContent = '—';
+      els.mSlaDelta.className = 'delta flat num';
+      els.mSlaMeta.textContent = data.sla == null ? 'sem dado hoje' : '';
+    } else {
+      els.mSlaDelta.innerHTML = (arrow(data.delta) + ' ' + fmt1(Math.abs(data.delta)) + 'pp').trim();
+      els.mSlaDelta.className = 'delta ' + deltaClass(data.delta) + ' num';
+      var gap = META - data.sla;
+      els.mSlaMeta.textContent = gap > 0.05 ? ('faltam ' + fmt1(gap) + 'pp p/ meta') : 'dentro da meta de 98%';
+    }
+
+    if(data.insucessoPct != null){
+      els.mInsValue.textContent = fmt2(data.insucessoPct) + '%';
+      els.mInsSub.textContent = fmtInt(data.insucesso) + ' pacotes · meta ' + fmt2(data.metaInsucesso) + '%';
+    } else {
+      els.mInsValue.textContent = fmtInt(data.insucesso);
+      els.mInsSub.textContent = BRASIL.insucesso ? (fmt1(data.insucesso / BRASIL.insucesso * 100) + '% do insucesso nacional') : '';
+    }
+
+    els.mBklValue.textContent = fmtInt(data.backlog);
+    els.mBklSub.textContent = fmt1(data.backlog / BRASIL.backlog * 100) + '% do backlog nacional';
+
+    if(data.forecast){
+      els.mFcValue.textContent = data.forecastRec;
+      els.mFcSub.textContent = fmtInt(data.recebido) + ' de ' + fmtInt(data.forecast) + ' previstos';
+    } else {
+      els.mFcValue.textContent = '—';
+      els.mFcSub.textContent = fmtInt(data.recebido) + ' recebidos · sem forecast cadastrado';
+    }
+
+    function corAderencia(pct){ return pct >= 90 ? 'good' : (pct >= 70 ? 'warn' : 'bad'); }
+
+    if(data.aderencia != null){
+      els.mCardAdes.style.display = '';
+      els.mAdesValue.textContent = fmt1(data.aderencia);
+      els.mAdesValue.parentElement.style.color = 'var(--' + corAderencia(data.aderencia) + ')';
+      els.mAdesSub.textContent = 'Realizado AG vs. Planejado AG · farol real da aba';
+    } else {
+      els.mCardAdes.style.display = 'none';
+    }
+
+    if(data.aderenciaRotas && data.aderenciaRotas.length){
+      els.mAdesRotasCard.style.display = '';
+      els.mAdesRotasBody.innerHTML = data.aderenciaRotas.map(function(r){
+        var rotaTxt = r[1] == null ? 'sem dado' : (fmt1(r[1]) + '%');
+        var corRota = r[1] == null ? 'ink-faint' : corAderencia(r[1]);
+        return '<tr><td>' + r[0] + '</td><td class="num-col num" style="color:var(--' + corRota + ');">' + rotaTxt + '</td></tr>';
+      }).join('');
+    } else {
+      els.mAdesRotasCard.style.display = 'none';
+    }
+
+    if(data.escoados != null){
+      els.mEscValue.textContent = fmtInt(data.escoados);
+      els.mEscSub.textContent = data.recebido ? (fmt1(data.escoados / data.recebido * 100) + '% do recebido hoje') : 'pacotes escoados hoje';
+    } else {
+      els.mEscValue.textContent = '—';
+      els.mEscSub.textContent = 'sem leitura de Escoados pra essa base hoje';
+    }
+
+    els.mExValue.textContent = data.expedicao;
+
+    var corStatus = data.sla == null ? 'var(--ink-faint)' : 'var(--' + farol(data.sla) + ')';
+    var slaParaSerie = data.sla == null ? 0 : data.sla;
+    var serieSla = gerarSerie(slaParaSerie, scope + '-sla', 1.1, 10).map(function(v){ return Math.max(0, Math.min(100, v)); });
+    els.trendSlaBalloon.classList.remove('open');
+    var temNotasSla = !!(data.slaNotasPorDia && Object.keys(data.slaNotasPorDia).length);
+    els.trendSlaHint.style.display = temNotasSla ? '' : 'none';
+    renderTrendChart(els.trendSla, els.trendSlaTooltip, serieSla, {
+      color: corStatus,
+      fmt: function(v){ return fmt1(v) + '%'; },
+      // Balão de nota de ofensores: mesma mecânica do balão do Insucesso —
+      // clica em qualquer ponto, mostra a nota (texto livre) daquele dia.
+      onPointClick: temNotasSla ? function(i, pt, e){
+        e.stopPropagation();
+        var n = serieSla.length;
+        var diaOffset = (n - 1) - i;
+        var texto = data.slaNotasPorDia[diaOffset] || null;
+        var rotulo = diaOffset === 0 ? 'Hoje (D-1)' : ('D-' + (diaOffset + 1));
+        popularBalaoSla(texto, rotulo);
+        var wrap = els.trendSla.parentElement;
+        var svgRect = els.trendSla.getBoundingClientRect();
+        var wrapRect = wrap.getBoundingClientRect();
+        var px = (pt[0] / 320) * svgRect.width + (svgRect.left - wrapRect.left);
+        var py = (pt[1] / 96) * svgRect.height + (svgRect.top - wrapRect.top);
+        els.trendSlaBalloon.style.left = px + 'px';
+        els.trendSlaBalloon.style.top = py + 'px';
+        els.trendSlaBalloon.classList.add('open');
+      } : null
+    });
+    els.trendSlaRange.textContent = 'meta ' + META + '%';
+
+    var serieInsucesso = gerarSerie(data.insucesso, scope + '-insucesso', Math.max(2, data.insucesso*0.18), 10).map(function(v){ return Math.max(0, v); });
+    els.trendInsucessoBalloon.classList.remove('open');
+    var temCausasPorDia = !!(data.causasPorDia && Object.keys(data.causasPorDia).length);
+    els.trendInsucessoHint.style.display = temCausasPorDia ? '' : 'none';
+    renderTrendChart(els.trendInsucesso, els.trendInsucessoTooltip, serieInsucesso, {
+      color: 'var(--accent)',
+      fmt: function(v){ return fmtInt(v); },
+      // ---- Balão de "quebra por motivo": clicar em QUALQUER ponto do
+      // gráfico (não só hoje) mostra a nota daquele dia — só existe dado
+      // real pras 12 bases da SP Capital/Sul-Carol, e só nos dias com nota
+      // colada na origem (20-25/08, com 23/08 faltando); dia sem nota
+      // mostra "sem nota de causas nesse dia" em vez de fingir que tem.
+      onPointClick: temCausasPorDia ? function(i, pt, e){
+        e.stopPropagation();
+        var n = serieInsucesso.length;
+        var diaOffset = (n - 1) - i;
+        var diaDados = data.causasPorDia[diaOffset] || null;
+        var rotulo = diaOffset === 0 ? 'Hoje (D-1)' : ('D-' + (diaOffset + 1));
+        popularBalaoInsucesso(diaDados, rotulo, data.metaInsucesso);
+        var wrap = els.trendInsucesso.parentElement;
+        var svgRect = els.trendInsucesso.getBoundingClientRect();
+        var wrapRect = wrap.getBoundingClientRect();
+        var px = (pt[0] / 320) * svgRect.width + (svgRect.left - wrapRect.left);
+        var py = (pt[1] / 96) * svgRect.height + (svgRect.top - wrapRect.top);
+        els.trendInsucessoBalloon.style.left = px + 'px';
+        els.trendInsucessoBalloon.style.top = py + 'px';
+        els.trendInsucessoBalloon.classList.add('open');
+      } : null
+    });
+    els.trendInsucessoRange.textContent = 'hoje: ' + fmtInt(data.insucesso);
+
+    if(data.insucessoPct != null && data.metaInsucesso != null){
+      var okMeta = data.insucessoPct <= data.metaInsucesso;
+      els.causasMetaNota.innerHTML = 'Total ' + fmt2(data.insucessoPct) + '% · Meta de Agência ' + fmt2(data.metaInsucesso)
+        + '% · <span class="delta ' + (okMeta ? 'up' : 'down') + ' num">' + (okMeta ? '🟢 dentro da meta' : '🔴 acima da meta') + '</span>';
+    } else {
+      els.causasMetaNota.textContent = '';
+    }
+
+    var causas = data.causas || [];
+    if(causas.length === 0){
+      els.causasTable.style.display = 'none';
+      els.causasEmpty.style.display = 'block';
+    } else {
+      els.causasTable.style.display = '';
+      els.causasEmpty.style.display = 'none';
+      els.causasBody.innerHTML = causas.map(function(c){
+        return '<tr>'
+          + '<td>' + c.motivo + '</td>'
+          + '<td class="num-col num">' + fmtInt(c.pacotes) + '</td>'
+          + '<td class="num-col num">' + fmt2(c.share) + '%</td>'
+          + '<td class="num-col num">' + fmt2(c.impacto) + 'pp</td>'
+          + '</tr>';
+      }).join('');
+    }
+
+    document.querySelectorAll('tbody tr[data-base]').forEach(function(tr){
+      tr.classList.toggle('row-selected', tr.dataset.base === scope);
+    });
+
+    els.viewBrasil.classList.add('hidden');
+    els.viewBase.classList.remove('hidden');
+    window.scrollTo(0, 0);
+    els.voltarBtn.focus();
+  }
+
+  function fecharBase(){
+    if(!baseAberta) return;
+    els.viewBase.classList.add('hidden');
+    els.viewBrasil.classList.remove('hidden');
+    window.scrollTo(0, 0);
+    document.querySelectorAll('tbody tr[data-base]').forEach(function(tr){
+      tr.classList.remove('row-selected');
+    });
+    els.scopeSelect.value = 'brasil';
+    var voltarFoco = linhaQueAbriu;
+    baseAberta = null;
+    linhaQueAbriu = null;
+    if(voltarFoco){ voltarFoco.focus(); }
+  }
+
+  els.voltarBtn.addEventListener('click', fecharBase);
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && baseAberta){ fecharBase(); }
+  });
+
+  // Balão de quebra por motivo do gráfico de Insucesso: fecha clicando no
+  // ✕, clicando fora dele, ou com Esc (junto com o resto da tela da base).
+  els.trendInsucessoBalloon.addEventListener('click', function(e){
+    if(e.target.closest('.trend-balloon-close')){ els.trendInsucessoBalloon.classList.remove('open'); }
+  });
+  els.trendSlaBalloon.addEventListener('click', function(e){
+    if(e.target.closest('.trend-balloon-close')){ els.trendSlaBalloon.classList.remove('open'); }
+  });
+  document.addEventListener('click', function(e){
+    if(els.trendInsucessoBalloon.classList.contains('open')
+      && !e.target.closest('#trend-insucesso-balloon') && !e.target.closest('#trend-insucesso')){
+      els.trendInsucessoBalloon.classList.remove('open');
+    }
+    if(els.trendSlaBalloon.classList.contains('open')
+      && !e.target.closest('#trend-sla-balloon') && !e.target.closest('#trend-sla')){
+      els.trendSlaBalloon.classList.remove('open');
+    }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      els.trendInsucessoBalloon.classList.remove('open');
+      els.trendSlaBalloon.classList.remove('open');
+    }
+  });
+
+  els.scopeSelect.addEventListener('change', function(e){
+    if(e.target.value === 'brasil'){ fecharBase(); }
+    else { linhaQueAbriu = null; abrirBase(e.target.value); }
+  });
+
+  document.querySelectorAll('tbody tr[data-base]').forEach(function(tr){
+    tr.addEventListener('click', function(){ linhaQueAbriu = tr; abrirBase(tr.dataset.base); });
+    tr.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); linhaQueAbriu = tr; abrirBase(tr.dataset.base); }
+    });
+  });
+
+  // ---- Filtro por faixa de SLA: clicar numa faixa (barra ou legenda) isola
+  // só as bases daquela faixa na tabela "Base a base" e resume Forecast x
+  // Recebido do recorte filtrado. Clicar de novo na mesma faixa limpa o filtro.
+  var BAND_LABEL = {b98:'98–100% de SLA', b97:'97–98% de SLA', b95:'95–97% de SLA', bAbaixo:'Abaixo de 95% de SLA', semdado:'sem dado'};
+  var bandBar = document.getElementById('band-bar');
+  var bandLegend = document.getElementById('band-legend');
+  var baseTableNote = document.getElementById('base-table-note');
+  var NOTA_PADRAO = baseTableNote ? baseTableNote.textContent : '';
+  var bandTargets = Array.prototype.slice.call(document.querySelectorAll('#band-bar [data-band], #band-legend [data-band]'));
+  var linhasTabela = Array.prototype.slice.call(document.querySelectorAll('#base-table tbody tr[data-base]'));
+  var faixaAtiva = null;
+
+  function aplicarFiltroFaixa(faixa){
+    faixaAtiva = (faixaAtiva === faixa) ? null : faixa;
+
+    bandTargets.forEach(function(el){
+      el.classList.toggle('active', !!faixaAtiva && el.dataset.band === faixaAtiva);
+    });
+    if(bandBar) bandBar.classList.toggle('has-filter', !!faixaAtiva);
+    if(bandLegend) bandLegend.classList.toggle('has-filter', !!faixaAtiva);
+
+    var visiveis = 0, forecastTot = 0, recebidoTot = 0;
+    linhasTabela.forEach(function(tr){
+      var mostra = !faixaAtiva || tr.dataset.band === faixaAtiva;
+      tr.style.display = mostra ? '' : 'none';
+      if(mostra){
+        visiveis++;
+        var base = BASES[tr.dataset.base];
+        if(base){ forecastTot += base.forecast || 0; recebidoTot += base.recebido || 0; }
+      }
+    });
+
+    if(!baseTableNote) return;
+    if(!faixaAtiva){
+      baseTableNote.textContent = NOTA_PADRAO;
+      return;
+    }
+    var pct = forecastTot ? Math.round(recebidoTot / forecastTot * 100) : 0;
+    baseTableNote.textContent = BAND_LABEL[faixaAtiva] + ' · ' + visiveis + ' de ' + linhasTabela.length + ' bases mostradas · Forecast '
+      + fmtInt(forecastTot) + ' · Recebido ' + fmtInt(recebidoTot) + ' (' + pct + '% do previsto) · clique na faixa de novo pra limpar';
+  }
+
+  bandTargets.forEach(function(el){
+    el.addEventListener('click', function(e){ e.stopPropagation(); aplicarFiltroFaixa(el.dataset.band); });
+  });
+
+  renderBrasil();
+})();
+</script>
