@@ -587,7 +587,7 @@
         <span class="badge">Dado real · Painel Operacional Brasil</span>
         <span class="badge">Meta SLA 98,0%</span>
       </div>
-      <span class="date-box num">Segunda, 31/08/2026 · dado de 28/08/2026 (D-1)</span>
+      <span class="date-box num">Terça, 01/09/2026 · dado de 31/08/2026 (D-1)</span>
     </div>
   </div>
 
@@ -794,9 +794,6 @@
         <label for="scope-select" class="scope-label">Abrir base</label>
         <select id="scope-select" class="scope-select">
           <option value="brasil">Selecionar base…</option>
-          <option value="DDM">DDM — 97,1%</option>
-          <option value="SMT">SMT — sem dado</option>
-          <option value="GVI">GVI — sem dado</option>
           <option value="LDA">LDA — sem dado</option>
           <option value="JVL">JVL — sem dado</option>
           <option value="BAL">BAL — sem dado</option>
@@ -819,6 +816,9 @@
           <option value="BRU">BRU — sem dado</option>
           <option value="TBR">TBR — sem dado</option>
           <option value="ANA">ANA — sem dado</option>
+          <option value="ADE">ADE — sem dado</option>
+          <option value="AGP">AGP — sem dado</option>
+          <option value="SOF">SOF — sem dado</option>
         </select>
       </div>
     </div>
@@ -880,20 +880,20 @@
     </div>
     <div class="card">
       <div class="band-bar" id="band-bar" role="img" aria-label="Distribuição de bases por faixa de SLA — clique numa faixa pra filtrar">
-        <span data-band="b98" style="width:10.3%; background:var(--good);">4</span>
-        <span data-band="b97" style="width:2.6%; background:color-mix(in srgb, var(--good) 45%, var(--warn) 55%);">1</span>
+        <span data-band="b98" style="width:17.9%; background:var(--good);">7</span>
+        <span data-band="b97" style="width:0.0%; background:color-mix(in srgb, var(--good) 45%, var(--warn) 55%);">0</span>
         <span data-band="b95" style="width:0.0%; background:var(--warn);">0</span>
         <span data-band="bAbaixo" style="width:0.0%; background:var(--bad);">0</span>
       </div>
             <div class="band-legend" id="band-legend">
         <div class="band-item" data-band="b98">
           <span class="swatch" style="background:var(--good);"></span>
-          98–100% de SLA <span class="count num">4 bases</span>
+          98–100% de SLA <span class="count num">7 bases</span>
           <span class="wtrend num">real</span>
         </div>
         <div class="band-item" data-band="b97">
           <span class="swatch" style="background:color-mix(in srgb, var(--good) 45%, var(--warn) 55%);"></span>
-          97–98% de SLA <span class="count num">1 bases</span>
+          97–98% de SLA <span class="count num">0 bases</span>
           <span class="wtrend num">real</span>
         </div>
         <div class="band-item" data-band="b95">
@@ -934,44 +934,14 @@
 
 
 
-            <tr style="--row-status:var(--warn);" data-base="DDM" data-band="b97" tabindex="0">
-              <td><div class="base-cell"><span class="dot"></span><span class="base-code">DDM</span><span class="routing">Regional São Paulo Capital</span></div></td>
-              <td class="num-col num">97,07%</td>
-              <td class="num-col"><span class="delta flat num">—</span></td>
-              <td class="offender">Ver causas e tendência</td>
-              <td class="num-col num">3</td>
-              <td class="num-col num">1.422</td>
-              <td class="num-col num"><span class="num">6.756</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 6.491 · 104%</span></td>
-              <td class="num-col num">93%</td>
-            </tr>
-            <tr style="--row-status:var(--semdado);" data-base="SMT" data-band="semdado" tabindex="0">
-              <td><div class="base-cell"><span class="dot"></span><span class="base-code">SMT</span><span class="routing">Regional São Paulo Capital</span></div></td>
-              <td class="num-col num">—</td>
-              <td class="num-col"><span class="delta flat num">—</span></td>
-              <td class="offender">Ver causas e tendência</td>
-              <td class="num-col num">1</td>
-              <td class="num-col num">1.265</td>
-              <td class="num-col num"><span class="num">5.885</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 5.583 · 105%</span></td>
-              <td class="num-col num">98%</td>
-            </tr>
-            <tr style="--row-status:var(--semdado);" data-base="GVI" data-band="semdado" tabindex="0">
-              <td><div class="base-cell"><span class="dot"></span><span class="base-code">GVI</span><span class="routing">Regional Sul</span></div></td>
-              <td class="num-col num">—</td>
-              <td class="num-col"><span class="delta flat num">—</span></td>
-              <td class="offender">Ver causas e tendência</td>
-              <td class="num-col num">2</td>
-              <td class="num-col num">-1.134</td>
-              <td class="num-col num"><span class="num">965</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 912 · 106%</span></td>
-              <td class="num-col num">95%</td>
-            </tr>
             <tr style="--row-status:var(--semdado);" data-base="LDA" data-band="semdado" tabindex="0">
               <td><div class="base-cell"><span class="dot"></span><span class="base-code">LDA</span><span class="routing">Regional Sul</span></div></td>
               <td class="num-col num">—</td>
               <td class="num-col"><span class="delta flat num">—</span></td>
               <td class="offender">Ver causas e tendência</td>
-              <td class="num-col num">1</td>
-              <td class="num-col num">-1.535</td>
-              <td class="num-col num"><span class="num">0</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 7.475 · 0%</span></td>
+              <td class="num-col num">0</td>
+              <td class="num-col num">-258</td>
+              <td class="num-col num"><span class="num">0</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 6.110 · 0%</span></td>
               <td class="num-col num">0%</td>
             </tr>
             <tr style="--row-status:var(--semdado);" data-base="JVL" data-band="semdado" tabindex="0">
@@ -979,10 +949,10 @@
               <td class="num-col num">—</td>
               <td class="num-col"><span class="delta flat num">—</span></td>
               <td class="offender">Ver causas e tendência</td>
-              <td class="num-col num">2</td>
-              <td class="num-col num">145</td>
-              <td class="num-col num"><span class="num">133</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 8.567 · 2%</span></td>
-              <td class="num-col num">97%</td>
+              <td class="num-col num">3</td>
+              <td class="num-col num">1.478</td>
+              <td class="num-col num"><span class="num">682</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 10.838 · 6%</span></td>
+              <td class="num-col num">0%</td>
             </tr>
             <tr style="--row-status:var(--semdado);" data-base="BAL" data-band="semdado" tabindex="0">
               <td><div class="base-cell"><span class="dot"></span><span class="base-code">BAL</span><span class="routing">Regional Sul</span></div></td>
@@ -990,9 +960,9 @@
               <td class="num-col"><span class="delta flat num">—</span></td>
               <td class="offender">Ver causas e tendência</td>
               <td class="num-col num">2</td>
-              <td class="num-col num">14.529</td>
-              <td class="num-col num"><span class="num">2.668</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 4.277 · 62%</span></td>
-              <td class="num-col num">95%</td>
+              <td class="num-col num">25.646</td>
+              <td class="num-col num"><span class="num">3.448</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 6.059 · 57%</span></td>
+              <td class="num-col num">0%</td>
             </tr>
             <tr style="--row-status:var(--semdado);" data-base="SDI" data-band="semdado" tabindex="0">
               <td><div class="base-cell"><span class="dot"></span><span class="base-code">SDI</span><span class="routing">Regional Sul</span></div></td>
@@ -1000,9 +970,9 @@
               <td class="num-col"><span class="delta flat num">—</span></td>
               <td class="offender">Ver causas e tendência</td>
               <td class="num-col num">2</td>
-              <td class="num-col num">-1.535</td>
-              <td class="num-col num"><span class="num">2.484</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 2.402 · 103%</span></td>
-              <td class="num-col num">98%</td>
+              <td class="num-col num">4.012</td>
+              <td class="num-col num"><span class="num">3.042</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 2.549 · 119%</span></td>
+              <td class="num-col num">0%</td>
             </tr>
             <tr style="--row-status:var(--semdado);" data-base="BTA" data-band="semdado" tabindex="0">
               <td><div class="base-cell"><span class="dot"></span><span class="base-code">BTA</span><span class="routing">Regional Sudeste</span></div></td>
@@ -1010,19 +980,19 @@
               <td class="num-col"><span class="delta flat num">—</span></td>
               <td class="offender">Ver causas e tendência</td>
               <td class="num-col num">—</td>
-              <td class="num-col num">2.568</td>
-              <td class="num-col num"><span class="num">1.443</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 1.327 · 109%</span></td>
-              <td class="num-col num">96%</td>
+              <td class="num-col num">5.131</td>
+              <td class="num-col num"><span class="num">1.180</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 890 · 133%</span></td>
+              <td class="num-col num">0%</td>
             </tr>
             <tr style="--row-status:var(--semdado);" data-base="JSS" data-band="semdado" tabindex="0">
               <td><div class="base-cell"><span class="dot"></span><span class="base-code">JSS</span><span class="routing">Regional Sul</span></div></td>
               <td class="num-col num">—</td>
               <td class="num-col"><span class="delta flat num">—</span></td>
               <td class="offender">Ver causas e tendência</td>
-              <td class="num-col num">4</td>
-              <td class="num-col num">-2.452</td>
-              <td class="num-col num"><span class="num">1.857</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 5.693 · 33%</span></td>
-              <td class="num-col num">97%</td>
+              <td class="num-col num">2</td>
+              <td class="num-col num">-811</td>
+              <td class="num-col num"><span class="num">2.361</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 6.173 · 38%</span></td>
+              <td class="num-col num">0%</td>
             </tr>
             <tr style="--row-status:var(--semdado);" data-base="FLO" data-band="semdado" tabindex="0">
               <td><div class="base-cell"><span class="dot"></span><span class="base-code">FLO</span><span class="routing">Regional Sudeste</span></div></td>
@@ -1030,19 +1000,19 @@
               <td class="num-col"><span class="delta flat num">—</span></td>
               <td class="offender">Ver causas e tendência</td>
               <td class="num-col num">—</td>
-              <td class="num-col num">2.248</td>
-              <td class="num-col num"><span class="num">1.368</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 1.985 · 69%</span></td>
-              <td class="num-col num">94%</td>
+              <td class="num-col num">6.226</td>
+              <td class="num-col num"><span class="num">1.234</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 1.509 · 82%</span></td>
+              <td class="num-col num">0%</td>
             </tr>
             <tr style="--row-status:var(--semdado);" data-base="CSS" data-band="semdado" tabindex="0">
               <td><div class="base-cell"><span class="dot"></span><span class="base-code">CSS</span><span class="routing">Regional Centro Norte</span></div></td>
               <td class="num-col num">—</td>
               <td class="num-col"><span class="delta flat num">—</span></td>
               <td class="offender">Ver causas e tendência</td>
-              <td class="num-col num">45</td>
-              <td class="num-col num">-1.712</td>
-              <td class="num-col num"><span class="num">248</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 329 · 75%</span></td>
-              <td class="num-col num">94%</td>
+              <td class="num-col num">—</td>
+              <td class="num-col num">1.113</td>
+              <td class="num-col num"><span class="num">1.267</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 1.617 · 78%</span></td>
+              <td class="num-col num">0%</td>
             </tr>
             <tr style="--row-status:var(--semdado);" data-base="LET" data-band="semdado" tabindex="0">
               <td><div class="base-cell"><span class="dot"></span><span class="base-code">LET</span><span class="routing">Regional Sudeste</span></div></td>
@@ -1050,9 +1020,9 @@
               <td class="num-col"><span class="delta flat num">—</span></td>
               <td class="offender">Ver causas e tendência</td>
               <td class="num-col num">—</td>
-              <td class="num-col num">4.474</td>
-              <td class="num-col num"><span class="num">1.550</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 1.715 · 90%</span></td>
-              <td class="num-col num">97%</td>
+              <td class="num-col num">9.488</td>
+              <td class="num-col num"><span class="num">1.355</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 1.479 · 92%</span></td>
+              <td class="num-col num">0%</td>
             </tr>
             <tr style="--row-status:var(--semdado);" data-base="IMB" data-band="semdado" tabindex="0">
               <td><div class="base-cell"><span class="dot"></span><span class="base-code">IMB</span><span class="routing">Regional Centro Norte</span></div></td>
@@ -1060,9 +1030,9 @@
               <td class="num-col"><span class="delta flat num">—</span></td>
               <td class="offender">Ver causas e tendência</td>
               <td class="num-col num">—</td>
-              <td class="num-col num">4.909</td>
-              <td class="num-col num"><span class="num">1.126</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 1.090 · 103%</span></td>
-              <td class="num-col num">98%</td>
+              <td class="num-col num">7.037</td>
+              <td class="num-col num"><span class="num">223</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 877 · 25%</span></td>
+              <td class="num-col num">0%</td>
             </tr>
             <tr style="--row-status:var(--semdado);" data-base="OLD" data-band="semdado" tabindex="0">
               <td><div class="base-cell"><span class="dot"></span><span class="base-code">OLD</span><span class="routing">Regional Centro Norte</span></div></td>
@@ -1070,9 +1040,9 @@
               <td class="num-col"><span class="delta flat num">—</span></td>
               <td class="offender">Ver causas e tendência</td>
               <td class="num-col num">—</td>
-              <td class="num-col num">5.240</td>
-              <td class="num-col num"><span class="num">1.188</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 1.174 · 101%</span></td>
-              <td class="num-col num">96%</td>
+              <td class="num-col num">8.063</td>
+              <td class="num-col num"><span class="num">261</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 1.167 · 22%</span></td>
+              <td class="num-col num">0%</td>
             </tr>
             <tr style="--row-status:var(--semdado);" data-base="FTZ" data-band="semdado" tabindex="0">
               <td><div class="base-cell"><span class="dot"></span><span class="base-code">FTZ</span><span class="routing">Regional Centro Norte</span></div></td>
@@ -1080,9 +1050,9 @@
               <td class="num-col"><span class="delta flat num">—</span></td>
               <td class="offender">Ver causas e tendência</td>
               <td class="num-col num">—</td>
-              <td class="num-col num">1.876</td>
-              <td class="num-col num"><span class="num">2.459</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 2.233 · 110%</span></td>
-              <td class="num-col num">89%</td>
+              <td class="num-col num">4.577</td>
+              <td class="num-col num"><span class="num">194</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 797 · 24%</span></td>
+              <td class="num-col num">0%</td>
             </tr>
             <tr style="--row-status:var(--semdado);" data-base="PQI" data-band="semdado" tabindex="0">
               <td><div class="base-cell"><span class="dot"></span><span class="base-code">PQI</span><span class="routing">Regional Centro Norte</span></div></td>
@@ -1090,9 +1060,9 @@
               <td class="num-col"><span class="delta flat num">—</span></td>
               <td class="offender">Ver causas e tendência</td>
               <td class="num-col num">—</td>
-              <td class="num-col num">2.070</td>
-              <td class="num-col num"><span class="num">10</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 416 · 2%</span></td>
-              <td class="num-col num">99%</td>
+              <td class="num-col num">3.775</td>
+              <td class="num-col num"><span class="num">18</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 2.145 · 1%</span></td>
+              <td class="num-col num">0%</td>
             </tr>
             <tr style="--row-status:var(--semdado);" data-base="CPN + CJL + HTL" data-band="semdado" tabindex="0">
               <td><div class="base-cell"><span class="dot"></span><span class="base-code">CPN+CJL+HTL</span><span class="routing">Regional Sul</span></div></td>
@@ -1100,9 +1070,9 @@
               <td class="num-col"><span class="delta flat num">—</span></td>
               <td class="offender">Ver causas e tendência</td>
               <td class="num-col num">—</td>
-              <td class="num-col num">-4.201</td>
-              <td class="num-col num"><span class="num">4.866</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 4.629 · 105%</span></td>
-              <td class="num-col num">97%</td>
+              <td class="num-col num">2.769</td>
+              <td class="num-col num"><span class="num">1.763</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 3.026 · 58%</span></td>
+              <td class="num-col num">0%</td>
             </tr>
             <tr style="--row-status:var(--semdado);" data-base="PBA" data-band="semdado" tabindex="0">
               <td><div class="base-cell"><span class="dot"></span><span class="base-code">PBA</span><span class="routing">Regional Sul</span></div></td>
@@ -1110,9 +1080,9 @@
               <td class="num-col"><span class="delta flat num">—</span></td>
               <td class="offender">Ver causas e tendência</td>
               <td class="num-col num">—</td>
-              <td class="num-col num">5.874</td>
-              <td class="num-col num"><span class="num">2.571</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 2.588 · 99%</span></td>
-              <td class="num-col num">96%</td>
+              <td class="num-col num">9.346</td>
+              <td class="num-col num"><span class="num">987</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 1.265 · 78%</span></td>
+              <td class="num-col num">0%</td>
             </tr>
             <tr style="--row-status:var(--semdado);" data-base="IBT + SCB" data-band="semdado" tabindex="0">
               <td><div class="base-cell"><span class="dot"></span><span class="base-code">IBT+SCB</span><span class="routing">Regional Sul</span></div></td>
@@ -1120,9 +1090,9 @@
               <td class="num-col"><span class="delta flat num">—</span></td>
               <td class="offender">Ver causas e tendência</td>
               <td class="num-col num">—</td>
-              <td class="num-col num">-4.843</td>
-              <td class="num-col num"><span class="num">3.597</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 6.057 · 59%</span></td>
-              <td class="num-col num">75%</td>
+              <td class="num-col num">1.312</td>
+              <td class="num-col num"><span class="num">1.312</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 4.147 · 32%</span></td>
+              <td class="num-col num">0%</td>
             </tr>
             <tr style="--row-status:var(--semdado);" data-base="MCO + PPG" data-band="semdado" tabindex="0">
               <td><div class="base-cell"><span class="dot"></span><span class="base-code">MCO+PPG</span><span class="routing">Regional Sul</span></div></td>
@@ -1130,19 +1100,19 @@
               <td class="num-col"><span class="delta flat num">—</span></td>
               <td class="offender">Ver causas e tendência</td>
               <td class="num-col num">—</td>
-              <td class="num-col num">4.989</td>
-              <td class="num-col num"><span class="num">2.124</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 2.383 · 89%</span></td>
-              <td class="num-col num">96%</td>
+              <td class="num-col num">8.497</td>
+              <td class="num-col num"><span class="num">1.383</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 5.748 · 24%</span></td>
+              <td class="num-col num">0%</td>
             </tr>
             <tr style="--row-status:var(--semdado);" data-base="LAG" data-band="semdado" tabindex="0">
               <td><div class="base-cell"><span class="dot"></span><span class="base-code">LAG</span><span class="routing">Regional Sul</span></div></td>
               <td class="num-col num">—</td>
               <td class="num-col"><span class="delta flat num">—</span></td>
               <td class="offender">Ver causas e tendência</td>
-              <td class="num-col num">52</td>
-              <td class="num-col num">-1.869</td>
-              <td class="num-col num"><span class="num">2.149</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 3.734 · 58%</span></td>
-              <td class="num-col num">99%</td>
+              <td class="num-col num">1</td>
+              <td class="num-col num">-1.084</td>
+              <td class="num-col num"><span class="num">851</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 2.297 · 37%</span></td>
+              <td class="num-col num">0%</td>
             </tr>
             <tr style="--row-status:var(--semdado);" data-base="PSJ" data-band="semdado" tabindex="0">
               <td><div class="base-cell"><span class="dot"></span><span class="base-code">PSJ</span><span class="routing">Regional Sul</span></div></td>
@@ -1150,9 +1120,9 @@
               <td class="num-col"><span class="delta flat num">—</span></td>
               <td class="offender">Ver causas e tendência</td>
               <td class="num-col num">—</td>
-              <td class="num-col num">-2.390</td>
-              <td class="num-col num"><span class="num">2.495</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 3.132 · 80%</span></td>
-              <td class="num-col num">87%</td>
+              <td class="num-col num">1.756</td>
+              <td class="num-col num"><span class="num">1.058</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 2.774 · 38%</span></td>
+              <td class="num-col num">0%</td>
             </tr>
             <tr style="--row-status:var(--semdado);" data-base="BRU" data-band="semdado" tabindex="0">
               <td><div class="base-cell"><span class="dot"></span><span class="base-code">BRU</span><span class="routing">Regional Sul</span></div></td>
@@ -1160,19 +1130,19 @@
               <td class="num-col"><span class="delta flat num">—</span></td>
               <td class="offender">Ver causas e tendência</td>
               <td class="num-col num">—</td>
-              <td class="num-col num">2.969</td>
-              <td class="num-col num"><span class="num">2.498</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 3.357 · 74%</span></td>
-              <td class="num-col num">98%</td>
+              <td class="num-col num">4.649</td>
+              <td class="num-col num"><span class="num">0</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 2.781 · 0%</span></td>
+              <td class="num-col num">0%</td>
             </tr>
             <tr style="--row-status:var(--semdado);" data-base="TBR" data-band="semdado" tabindex="0">
               <td><div class="base-cell"><span class="dot"></span><span class="base-code">TBR</span><span class="routing">Regional Sudeste</span></div></td>
               <td class="num-col num">—</td>
               <td class="num-col"><span class="delta flat num">—</span></td>
               <td class="offender">Ver causas e tendência</td>
-              <td class="num-col num">65</td>
-              <td class="num-col num">-3.218</td>
-              <td class="num-col num"><span class="num">0</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 1.510 · 0%</span></td>
-              <td class="num-col num">98%</td>
+              <td class="num-col num">3</td>
+              <td class="num-col num">-3.579</td>
+              <td class="num-col num"><span class="num">0</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 1.298 · 0%</span></td>
+              <td class="num-col num">0%</td>
             </tr>
             <tr style="--row-status:var(--semdado);" data-base="ANA" data-band="semdado" tabindex="0">
               <td><div class="base-cell"><span class="dot"></span><span class="base-code">ANA</span><span class="routing">Regional Centro Norte</span></div></td>
@@ -1180,9 +1150,39 @@
               <td class="num-col"><span class="delta flat num">—</span></td>
               <td class="offender">Ver causas e tendência</td>
               <td class="num-col num">—</td>
-              <td class="num-col num">-578</td>
-              <td class="num-col num"><span class="num">0</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 886 · 0%</span></td>
-              <td class="num-col num">97%</td>
+              <td class="num-col num">472</td>
+              <td class="num-col num"><span class="num">0</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 47 · 0%</span></td>
+              <td class="num-col num">0%</td>
+            </tr>
+            <tr style="--row-status:var(--semdado);" data-base="ADE" data-band="semdado" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">ADE</span><span class="routing">Regional Centro Norte</span></div></td>
+              <td class="num-col num">—</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">—</td>
+              <td class="num-col num">11.846</td>
+              <td class="num-col num"><span class="num">2.740</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 3.259 · 84%</span></td>
+              <td class="num-col num">0%</td>
+            </tr>
+            <tr style="--row-status:var(--semdado);" data-base="AGP" data-band="semdado" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">AGP</span><span class="routing">Regional Centro Norte</span></div></td>
+              <td class="num-col num">—</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">—</td>
+              <td class="num-col num">10.731</td>
+              <td class="num-col num"><span class="num">2.544</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 3.997 · 64%</span></td>
+              <td class="num-col num">0%</td>
+            </tr>
+            <tr style="--row-status:var(--semdado);" data-base="SOF" data-band="semdado" tabindex="0">
+              <td><div class="base-cell"><span class="dot"></span><span class="base-code">SOF</span><span class="routing">Regional Centro Norte</span></div></td>
+              <td class="num-col num">—</td>
+              <td class="num-col"><span class="delta flat num">—</span></td>
+              <td class="offender">Ver causas e tendência</td>
+              <td class="num-col num">—</td>
+              <td class="num-col num">14.484</td>
+              <td class="num-col num"><span class="num">3.410</span><span class="ink-faint" style="font-size:0.72em; display:block; line-height:1.3;">de 3.243 · 105%</span></td>
+              <td class="num-col num">0%</td>
             </tr>
 
 
@@ -1207,34 +1207,34 @@
   var META = 98;
 
   var BASES = {
-    DDM:{routing:'Regional São Paulo Capital', band:'b97', sla:97.07, delta:null, insucesso:3, backlog:1422, forecast:6491, recebido:6756, forecastRec:104, escoados:6672, aderencia:67.22, aderenciaPlanejado:23, aderenciaRealizado:16, aderenciaRotas:[['DDM1',{planejado:3,realizado:1,aderencia:33.33}], ['DDM2',{planejado:5,realizado:5,aderencia:100.00}], ['DDM3',{planejado:9,realizado:7,aderencia:77.78}], ['DDM4',{planejado:4,realizado:1,aderencia:25.00}], ['DDM5',{planejado:0,realizado:0,aderencia:null}], ['DDM6',{planejado:2,realizado:2,aderencia:100.00}]], aderenciaPl:80.75, aderenciaPlPlanejado:52, aderenciaPlRealizado:46, aderenciaRotasPl:[['DDM1',{planejado:12,realizado:11,aderencia:91.67}], ['DDM2',{planejado:10,realizado:6,aderencia:60.00}], ['DDM3',{planejado:16,realizado:17,aderencia:106.25}], ['DDM4',{planejado:8,realizado:9,aderencia:112.50}], ['DDM5',{planejado:0,realizado:0,aderencia:null}], ['DDM6',{planejado:6,realizado:2,aderencia:33.33}]], aderenciaAgHistorico:[28.8095, 33.8333, 72.6667, 62.0000, 62.0000, 52.5556, 62.1111, 65.5556, 62.1111, 67.2222], aderenciaPlHistorico:[77.0000, 72.9167, 67.9167, 33.1667, 33.1667, 71.1667, 76.5000, 86.0000, 82.6667, 80.7500], expedicao:93, insucessoPct:2.62, metaInsucesso:1.82, causas:[{motivo:"Destinatário Ausente", pacotes:86, share:46.2, impacto:1.21}, {motivo:"Endereço errado", pacotes:92, share:49.6, impacto:1.30}, {motivo:"Recusado pelo Destinatário", pacotes:8, share:4.2, impacto:0.11}], causasPorDia:{6:{total:3.54, motivos:[{motivo:"Destinatário Ausente", impacto:2.18, pacotes:97}, {motivo:"Endereço errado", impacto:1.23, pacotes:55}, {motivo:"Recusado pelo Destinatário", impacto:0.13, pacotes:6}]}, 4:{total:4.22, motivos:[{motivo:"Destinatário Ausente", impacto:2.15, pacotes:115}, {motivo:"Endereço errado", impacto:1.81, pacotes:97}, {motivo:"Recusado pelo Destinatário", impacto:0.26, pacotes:14}]}, 3:{total:2.53, motivos:[{motivo:"Destinatário Ausente", impacto:1.00, pacotes:53}, {motivo:"Endereço errado", impacto:1.40, pacotes:74}, {motivo:"Recusado pelo Destinatário", impacto:0.13, pacotes:7}]}, 2:{total:2.59, motivos:[{motivo:"Destinatário Ausente", impacto:1.21, pacotes:89}, {motivo:"Endereço errado", impacto:1.24, pacotes:91}, {motivo:"Recusado pelo Destinatário", impacto:0.14, pacotes:10}]}, 1:{total:3.12, motivos:[{motivo:"Destinatário Ausente", impacto:1.39, pacotes:93}, {motivo:"Endereço errado", impacto:1.51, pacotes:101}, {motivo:"Recusado pelo Destinatário", impacto:0.22, pacotes:15}]}, 0:{total:2.62, motivos:[{motivo:"Destinatário Ausente", impacto:1.21, pacotes:86}, {motivo:"Endereço errado", impacto:1.30, pacotes:92}, {motivo:"Recusado pelo Destinatário", impacto:0.11, pacotes:8}]}}, slaNotasPorDia:{9:"Aguarando processamento com 40 pacotes sendo: \n15 Atraso em agencia \n14 ficaram em Cajamar e recebemos hoje\n9 Foram Recusadas \n2 Rotas fechadas antes das 08:00\nXD - Atraso em processamento 15 0,23 % \nAg - Reprocessamento14 0,23%\nMM - Não classificado 0,23%", 8:"171 pacotes ofensores\n\nAg - Processamento 70 pacotes 1,15%\n42 Foram as RCON0010010121165, e RCON0010010121166 que foram para MCA. )0, 60%\n20 Atraso em Agencia (Recuperação de pacotes e troca de etiquetas). 0,35%\n8 CEPS errados já alinhado com para subir na planilha de CEP. 0,25%\n\nAtraso subida de malha 0,61% \n\nXD - Atraso em processamento 0,36%", 7:"317 pacotes \nAg - Processamento 112 1,62%\nLm - Expedição 110 1,44 % \nDriver - Atraso na tentativa de entrega 42", 4:"49 pacotes ofensores tods dentro da meta", 3:"77 pacotes todas dentro da meta \nAg - Processamento 22 \nMM - Não classificado 16 \nAtraso subida de malha 12 \nXD - Atraso em processamento 11", 2:"195 pacotes \n\nLm - Expedição 0,71 % 52 pacotes \nDriver - Atraso na tentativa de entrega 063% 46 Pacotes \nAg - Processamento 30 pacotes 041% \nXD - Atraso em processamento 20 pacotes 0,27 \nAtraso subida de malha 0,19 % 14 pacotes", 1:"Perca de 1,09em XD, MM, Subida de malha \nCom Cajamar com maior ofensor depois Logipontos de SP \n\nAtraso subida de malha 25 pacotes 0,40% \nAg - Processamento 25 0,40% \nMM - Não classificado 22 0,35%\nXD - Atraso em processamento 21  0,34%", 0:"Driver - Retornou sem tentativa 62 pacotes 0,90% \nAg - Processamento 31 pacotes 0,45% \nAtraso subida de malha 26 0,38% \nXD - Atraso em processamento 19 pacotes 0,28% \nMM - Não classificado 15 pacotes  0,22%"}},
-    SMT:{routing:'Regional São Paulo Capital', band:'semdado', sla:null, delta:null, insucesso:1, backlog:1265, forecast:5583, recebido:5885, forecastRec:105, escoados:5933, aderencia:94.18, aderenciaPlanejado:30, aderenciaRealizado:28, aderenciaRotas:[['SMT1',{planejado:11,realizado:10,aderencia:90.91}], ['SMT2',{planejado:1,realizado:1,aderencia:100.00}], ['SMT3',{planejado:5,realizado:4,aderencia:80.00}], ['SMT4',{planejado:6,realizado:6,aderencia:100.00}], ['SMT5',{planejado:7,realizado:7,aderencia:100.00}]], aderenciaPl:101.62, aderenciaPlPlanejado:31, aderenciaPlRealizado:31, aderenciaRotasPl:[['SMT1',{planejado:11,realizado:11,aderencia:100.00}], ['SMT2',{planejado:2,realizado:2,aderencia:100.00}], ['SMT3',{planejado:6,realizado:7,aderencia:116.67}], ['SMT4',{planejado:7,realizado:5,aderencia:71.43}], ['SMT5',{planejado:5,realizado:6,aderencia:120.00}]], aderenciaAgHistorico:[89.8333, 92.6667, 92.1905, 81.3333, 81.3333, 83.6883, 88.3636, 74.1818, 87.3247, 94.1818], aderenciaPlHistorico:[112.8485, 96.6667, 93.9827, 68.4242, 68.4242, 78.0952, 84.6494, 95.6190, 103.3247, 101.6190], expedicao:98, insucessoPct:1.44, metaInsucesso:1.94, causas:[{motivo:"Destinatário Ausente", pacotes:37, share:41.0, impacto:0.59}, {motivo:"Endereço errado", pacotes:43, share:47.9, impacto:0.69}, {motivo:"Recusado pelo Destinatário", pacotes:10, share:11.1, impacto:0.16}], causasPorDia:{6:{total:2.17, motivos:[{motivo:"Destinatário Ausente", impacto:1.50, pacotes:60}, {motivo:"Endereço errado", impacto:0.62, pacotes:25}, {motivo:"Recusado pelo Destinatário", impacto:0.05, pacotes:2}]}, 4:{total:1.96, motivos:[{motivo:"Destinatário Ausente", impacto:1.19, pacotes:57}, {motivo:"Endereço errado", impacto:0.56, pacotes:27}, {motivo:"Recusado pelo Destinatário", impacto:0.21, pacotes:10}]}, 3:{total:1.74, motivos:[{motivo:"Destinatário Ausente", impacto:1.09, pacotes:51}, {motivo:"Endereço errado", impacto:0.56, pacotes:26}, {motivo:"Recusado pelo Destinatário", impacto:0.09, pacotes:4}]}, 2:{total:1.80, motivos:[{motivo:"Destinatário Ausente", impacto:0.98, pacotes:61}, {motivo:"Endereço errado", impacto:0.69, pacotes:43}, {motivo:"Recusado pelo Destinatário", impacto:0.13, pacotes:8}]}, 1:{total:2.18, motivos:[{motivo:"Destinatário Ausente", impacto:1.06, pacotes:61}, {motivo:"Endereço errado", impacto:0.96, pacotes:55}, {motivo:"Recusado pelo Destinatário", impacto:0.16, pacotes:9}]}, 0:{total:1.44, motivos:[{motivo:"Destinatário Ausente", impacto:0.59, pacotes:37}, {motivo:"Endereço errado", impacto:0.69, pacotes:43}, {motivo:"Recusado pelo Destinatário", impacto:0.16, pacotes:10}]}}, slaNotasPorDia:{9:"Atraso subida de malha\t17\t0.30%\nXD - Atraso em processamento\t14\t0.24%\nDriver - Atraso na tentativa de entrega\t10\t0.17%\nAg - Processamento\t9\t0.16%\nMM - Não classificado\t7\t0.12%\nAg - Reprocessamento\t4\t0.07%\nDriver MM - Atraso durante transferencia\t3\t0.05%\nLm - Expedição\t2\t0.03%\nXD - Transferencia para LMC não planejada\t1\t0.02%", 8:"Atraso subida de Malha 0,81%\nDriver - Retornado sem tentativa 0,68%", 4:"XD - Atraso em processamento\t9\t0.17%\nAtraso subida de malha\t4\t0.08%\nDriver - Atraso na tentativa de entrega\t3\t0.06%\nMM - Não classificado\t3\t0.06%\nAg - Reprocessamento\t2\t0.04%\nAg - Processamento\t1\t0.02%\nDriver MM - Atraso durante transferencia\t1\t0.02%", 3:"MM - Não classificado\t27\t0.36%\nAtraso subida de malha\t22\t0.29%\nXD - Atraso em processamento\t8\t0.11%\nAg - Processamento\t4\t0.05%\nAg - Reprocessamento\t2\t0.03%\nDriver MM - Atraso durante transferencia\t2\t0.03%\nDriver - Atraso na tentativa de entrega\t1\t0.01%", 1:"Atraso subida de malha\t33\t0.58%\nXD - Atraso em processamento\t19\t0.34%\nDriver MM - Atraso durante transferencia\t10\t0.18%\nMM - Não classificado\t7\t0.12%\nDriver - Atraso na tentativa de entrega\t6\t0.11%\nAg - Processamento\t5\t0.09%\nAg - Reprocessamento\t1\t0.02%\nLm - Expedição\t1\t0.02%\nLm - Reexpedição\t1\t0.02%"}},
-    GVI:{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:2, backlog:-1134, forecast:912, recebido:965, forecastRec:106, escoados:960, expedicao:95, insucessoPct:1.91, metaInsucesso:2.03, causas:[{motivo:"Destinatário Ausente", pacotes:6, share:42.9, impacto:0.82}, {motivo:"Endereço errado", pacotes:8, share:57.1, impacto:1.09}, {motivo:"Recusado pelo Destinatário", pacotes:0, share:0.0, impacto:0.00}], causasPorDia:{9:{total:2.88, motivos:[{motivo:"Destinatário Ausente", impacto:1.84, pacotes:16}, {motivo:"Endereço errado", impacto:1.04, pacotes:9}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 8:{total:2.45, motivos:[{motivo:"Destinatário Ausente", impacto:1.32, pacotes:14}, {motivo:"Endereço errado", impacto:1.13, pacotes:12}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 7:{total:0.99, motivos:[{motivo:"Destinatário Ausente", impacto:0.81, pacotes:9}, {motivo:"Endereço errado", impacto:0.18, pacotes:2}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 4:{total:2.84, motivos:[{motivo:"Destinatário Ausente", impacto:1.24, pacotes:14}, {motivo:"Endereço errado", impacto:1.51, pacotes:17}, {motivo:"Recusado pelo Destinatário", impacto:0.09, pacotes:1}]}, 3:{total:3.11, motivos:[{motivo:"Destinatário Ausente", impacto:2.13, pacotes:24}, {motivo:"Endereço errado", impacto:0.89, pacotes:10}, {motivo:"Recusado pelo Destinatário", impacto:0.09, pacotes:1}]}, 2:{total:2.31, motivos:[{motivo:"Destinatário Ausente", impacto:1.06, pacotes:11}, {motivo:"Endereço errado", impacto:1.25, pacotes:13}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 1:{total:2.91, motivos:[{motivo:"Destinatário Ausente", impacto:1.94, pacotes:18}, {motivo:"Endereço errado", impacto:0.86, pacotes:8}, {motivo:"Recusado pelo Destinatário", impacto:0.11, pacotes:1}]}, 0:{total:1.91, motivos:[{motivo:"Destinatário Ausente", impacto:0.82, pacotes:6}, {motivo:"Endereço errado", impacto:1.09, pacotes:8}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}}},
-    LDA:{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:1, backlog:-1535, forecast:7475, recebido:0, forecastRec:0, escoados:1277, expedicao:0, insucessoPct:0.64, metaInsucesso:1.33, causas:[{motivo:"Destinatário Ausente", pacotes:4, share:31.2, impacto:0.20}, {motivo:"Endereço errado", pacotes:9, share:68.8, impacto:0.44}, {motivo:"Recusado pelo Destinatário", pacotes:0, share:0.0, impacto:0.00}], causasPorDia:{9:{total:0.00, motivos:[{motivo:"Destinatário Ausente", impacto:0.00, pacotes:0}, {motivo:"Endereço errado", impacto:0.00, pacotes:0}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 8:{total:0.00, motivos:[{motivo:"Destinatário Ausente", impacto:0.00, pacotes:0}, {motivo:"Endereço errado", impacto:0.00, pacotes:0}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 7:{total:0.00, motivos:[{motivo:"Destinatário Ausente", impacto:0.00, pacotes:0}, {motivo:"Endereço errado", impacto:0.00, pacotes:0}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 4:{total:0.70, motivos:[{motivo:"Destinatário Ausente", impacto:0.28, pacotes:4}, {motivo:"Endereço errado", impacto:0.42, pacotes:6}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 3:{total:1.66, motivos:[{motivo:"Destinatário Ausente", impacto:0.70, pacotes:8}, {motivo:"Endereço errado", impacto:0.70, pacotes:8}, {motivo:"Recusado pelo Destinatário", impacto:0.26, pacotes:3}]}, 2:{total:0.30, motivos:[{motivo:"Destinatário Ausente", impacto:0.10, pacotes:0}, {motivo:"Endereço errado", impacto:0.20, pacotes:1}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 1:{total:0.72, motivos:[{motivo:"Destinatário Ausente", impacto:0.18, pacotes:3}, {motivo:"Endereço errado", impacto:0.48, pacotes:8}, {motivo:"Recusado pelo Destinatário", impacto:0.06, pacotes:1}, {motivo:"Cliente ausente", impacto:null, pacotes:2}, {motivo:"Recusado pelo cliente", impacto:null, pacotes:1}]}, 0:{total:0.64, motivos:[{motivo:"Destinatário Ausente", impacto:0.20, pacotes:4}, {motivo:"Endereço errado", impacto:0.44, pacotes:9}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}}},
-    JVL:{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:2, backlog:145, forecast:8567, recebido:133, forecastRec:2, escoados:574, expedicao:97, insucessoPct:2.37, metaInsucesso:2.64, causas:[{motivo:"Destinatário Ausente", pacotes:6, share:35.4, impacto:0.84}, {motivo:"Endereço errado", pacotes:11, share:64.6, impacto:1.53}, {motivo:"Recusado pelo Destinatário", pacotes:0, share:0.0, impacto:0.00}], causasPorDia:{9:{total:1.12, motivos:[{motivo:"Destinatário Ausente", impacto:0.64, pacotes:4}, {motivo:"Endereço errado", impacto:0.48, pacotes:3}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 8:{total:1.80, motivos:[{motivo:"Destinatário Ausente", impacto:1.20, pacotes:8}, {motivo:"Endereço errado", impacto:0.60, pacotes:4}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 7:{total:2.67, motivos:[{motivo:"Destinatário Ausente", impacto:1.65, pacotes:13}, {motivo:"Endereço errado", impacto:0.89, pacotes:7}, {motivo:"Recusado pelo Destinatário", impacto:0.13, pacotes:1}]}, 4:{total:5.31, motivos:[{motivo:"Destinatário Ausente", impacto:1.80, pacotes:18}, {motivo:"Endereço errado", impacto:3.41, pacotes:34}, {motivo:"Recusado pelo Destinatário", impacto:0.10, pacotes:1}]}, 3:{total:2.38, motivos:[{motivo:"Destinatário Ausente", impacto:1.19, pacotes:7}, {motivo:"Endereço errado", impacto:1.19, pacotes:7}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 2:{total:3.61, motivos:[{motivo:"Destinatário Ausente", impacto:2.07, pacotes:12}, {motivo:"Endereço errado", impacto:1.20, pacotes:7}, {motivo:"Recusado pelo Destinatário", impacto:0.34, pacotes:2}]}, 1:{total:4.41, motivos:[{motivo:"Destinatário Ausente", impacto:2.28, pacotes:15}, {motivo:"Endereço errado", impacto:1.98, pacotes:13}, {motivo:"Recusado pelo Destinatário", impacto:0.15, pacotes:1}]}, 0:{total:2.37, motivos:[{motivo:"Destinatário Ausente", impacto:0.84, pacotes:6}, {motivo:"Endereço errado", impacto:1.53, pacotes:11}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}}},
-    BAL:{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:2, backlog:14529, forecast:4277, recebido:2668, forecastRec:62, escoados:4180, expedicao:95, insucessoPct:2.02, metaInsucesso:2.14, causas:[{motivo:"Destinatário Ausente", pacotes:39, share:41.6, impacto:0.84}, {motivo:"Endereço errado", pacotes:51, share:54.0, impacto:1.09}, {motivo:"Recusado pelo Destinatário", pacotes:4, share:4.5, impacto:0.09}], causasPorDia:{9:{total:2.20, motivos:[{motivo:"Destinatário Ausente", impacto:0.93, pacotes:41}, {motivo:"Endereço errado", impacto:1.16, pacotes:52}, {motivo:"Recusado pelo Destinatário", impacto:0.11, pacotes:5}]}, 8:{total:2.06, motivos:[{motivo:"Destinatário Ausente", impacto:0.66, pacotes:32}, {motivo:"Endereço errado", impacto:1.17, pacotes:57}, {motivo:"Recusado pelo Destinatário", impacto:0.23, pacotes:11}]}, 7:{total:4.31, motivos:[{motivo:"Destinatário Ausente", impacto:1.18, pacotes:62}, {motivo:"Endereço errado", impacto:3.09, pacotes:162}, {motivo:"Recusado pelo Destinatário", impacto:0.04, pacotes:2}]}, 4:{total:2.54, motivos:[{motivo:"Destinatário Ausente", impacto:1.25, pacotes:55}, {motivo:"Endereço errado", impacto:1.18, pacotes:52}, {motivo:"Recusado pelo Destinatário", impacto:0.11, pacotes:5}]}, 3:{total:1.76, motivos:[{motivo:"Destinatário Ausente", impacto:1.02, pacotes:36}, {motivo:"Endereço errado", impacto:0.74, pacotes:26}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 2:{total:3.05, motivos:[{motivo:"Destinatário Ausente", impacto:1.22, pacotes:55}, {motivo:"Endereço errado", impacto:1.65, pacotes:74}, {motivo:"Recusado pelo Destinatário", impacto:0.18, pacotes:8}]}, 1:{total:1.63, motivos:[{motivo:"Destinatário Ausente", impacto:0.86, pacotes:41}, {motivo:"Endereço errado", impacto:0.71, pacotes:34}, {motivo:"Recusado pelo Destinatário", impacto:0.06, pacotes:3}]}, 0:{total:2.02, motivos:[{motivo:"Destinatário Ausente", impacto:0.84, pacotes:39}, {motivo:"Endereço errado", impacto:1.09, pacotes:51}, {motivo:"Recusado pelo Destinatário", impacto:0.09, pacotes:4}]}}},
-    SDI:{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:2, backlog:-1535, forecast:2402, recebido:2484, forecastRec:103, escoados:2505, expedicao:98, insucessoPct:2.10, metaInsucesso:2.10, causas:[{motivo:"Destinatário Ausente", pacotes:32, share:69.5, impacto:1.46}, {motivo:"Endereço errado", pacotes:14, share:30.5, impacto:0.64}, {motivo:"Recusado pelo Destinatário", pacotes:0, share:0.0, impacto:0.00}], causasPorDia:{9:{total:2.82, motivos:[{motivo:"Destinatário Ausente", impacto:1.88, pacotes:38}, {motivo:"Endereço errado", impacto:0.79, pacotes:16}, {motivo:"Recusado pelo Destinatário", impacto:0.15, pacotes:3}]}, 8:{total:3.39, motivos:[{motivo:"Destinatário Ausente", impacto:2.16, pacotes:56}, {motivo:"Endereço errado", impacto:0.96, pacotes:25}, {motivo:"Recusado pelo Destinatário", impacto:0.27, pacotes:7}]}, 7:{total:1.91, motivos:[{motivo:"Destinatário Ausente", impacto:1.42, pacotes:43}, {motivo:"Endereço errado", impacto:0.46, pacotes:14}, {motivo:"Recusado pelo Destinatário", impacto:0.03, pacotes:1}]}, 4:{total:2.47, motivos:[{motivo:"Destinatário Ausente", impacto:1.44, pacotes:46}, {motivo:"Endereço errado", impacto:0.94, pacotes:30}, {motivo:"Recusado pelo Destinatário", impacto:0.09, pacotes:3}]}, 3:{total:2.76, motivos:[{motivo:"Destinatário Ausente", impacto:1.98, pacotes:56}, {motivo:"Endereço errado", impacto:0.74, pacotes:21}, {motivo:"Recusado pelo Destinatário", impacto:0.04, pacotes:1}]}, 2:{total:3.00, motivos:[{motivo:"Destinatário Ausente", impacto:1.59, pacotes:35}, {motivo:"Endereço errado", impacto:1.00, pacotes:22}, {motivo:"Recusado pelo Destinatário", impacto:0.41, pacotes:9}]}, 1:{total:3.18, motivos:[{motivo:"Destinatário Ausente", impacto:2.20, pacotes:49}, {motivo:"Endereço errado", impacto:0.94, pacotes:21}, {motivo:"Recusado pelo Destinatário", impacto:0.04, pacotes:1}]}, 0:{total:2.10, motivos:[{motivo:"Destinatário Ausente", impacto:1.46, pacotes:32}, {motivo:"Endereço errado", impacto:0.64, pacotes:14}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}}},
-    BTA:{routing:'Regional Sudeste', band:'semdado', sla:null, delta:null, insucesso:0, backlog:2568, forecast:1327, recebido:1443, forecastRec:109, escoados:1383, expedicao:96, causas:[]},
-    JSS:{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:4, backlog:-2452, forecast:5693, recebido:1857, forecastRec:33, escoados:1785, expedicao:97, insucessoPct:3.50, metaInsucesso:3.41, causas:[{motivo:"Destinatário Ausente", pacotes:28, share:42.6, impacto:1.49}, {motivo:"Endereço errado", pacotes:37, share:56.0, impacto:1.96}, {motivo:"Recusado pelo Destinatário", pacotes:1, share:1.4, impacto:0.05}], causasPorDia:{9:{total:5.09, motivos:[{motivo:"Destinatário Ausente", impacto:1.63, pacotes:40}, {motivo:"Endereço errado", impacto:3.42, pacotes:84}, {motivo:"Recusado pelo Destinatário", impacto:0.04, pacotes:1}]}, 8:{total:4.03, motivos:[{motivo:"Destinatário Ausente", impacto:1.18, pacotes:27}, {motivo:"Endereço errado", impacto:2.85, pacotes:65}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 7:{total:4.26, motivos:[{motivo:"Destinatário Ausente", impacto:2.23, pacotes:56}, {motivo:"Endereço errado", impacto:1.99, pacotes:50}, {motivo:"Recusado pelo Destinatário", impacto:0.04, pacotes:1}]}, 4:{total:4.54, motivos:[{motivo:"Destinatário Ausente", impacto:1.86, pacotes:48}, {motivo:"Endereço errado", impacto:2.64, pacotes:68}, {motivo:"Recusado pelo Destinatário", impacto:0.04, pacotes:1}]}, 3:{total:3.70, motivos:[{motivo:"Destinatário Ausente", impacto:1.13, pacotes:29}, {motivo:"Endereço errado", impacto:2.41, pacotes:62}, {motivo:"Recusado pelo Destinatário", impacto:0.16, pacotes:4}]}, 2:{total:4.85, motivos:[{motivo:"Destinatário Ausente", impacto:1.39, pacotes:27}, {motivo:"Endereço errado", impacto:3.46, pacotes:67}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 1:{total:3.59, motivos:[{motivo:"Destinatário Ausente", impacto:1.54, pacotes:30}, {motivo:"Endereço errado", impacto:1.90, pacotes:37}, {motivo:"Recusado pelo Destinatário", impacto:0.15, pacotes:3}]}, 0:{total:3.50, motivos:[{motivo:"Destinatário Ausente", impacto:1.49, pacotes:28}, {motivo:"Endereço errado", impacto:1.96, pacotes:37}, {motivo:"Recusado pelo Destinatário", impacto:0.05, pacotes:1}]}}},
-    FLO:{routing:'Regional Sudeste', band:'semdado', sla:null, delta:null, insucesso:0, backlog:2248, forecast:1985, recebido:1368, forecastRec:69, escoados:1442, expedicao:94, causas:[]},
-    CSS:{routing:'Regional Centro Norte', band:'semdado', sla:null, delta:null, insucesso:45, backlog:-1712, forecast:329, recebido:248, forecastRec:75, escoados:263, expedicao:94, causas:[]},
-    LET:{routing:'Regional Sudeste', band:'semdado', sla:null, delta:null, insucesso:0, backlog:4474, forecast:1715, recebido:1550, forecastRec:90, escoados:1847, expedicao:97, causas:[]},
-    IMB:{routing:'Regional Centro Norte', band:'semdado', sla:null, delta:null, insucesso:0, backlog:4909, forecast:1090, recebido:1126, forecastRec:103, escoados:1136, expedicao:98, causas:[]},
-    OLD:{routing:'Regional Centro Norte', band:'semdado', sla:null, delta:null, insucesso:0, backlog:5240, forecast:1174, recebido:1188, forecastRec:101, escoados:1189, expedicao:96, causas:[]},
-    FTZ:{routing:'Regional Centro Norte', band:'semdado', sla:null, delta:null, insucesso:0, backlog:1876, forecast:2233, recebido:2459, forecastRec:110, escoados:2507, expedicao:89, causas:[]},
-    PQI:{routing:'Regional Centro Norte', band:'semdado', sla:null, delta:null, insucesso:0, backlog:2070, forecast:416, recebido:10, forecastRec:2, escoados:1687, expedicao:99, causas:[]},
-    'CPN + CJL + HTL':{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:0, backlog:-4201, forecast:4629, recebido:4866, forecastRec:105, escoados:4766, expedicao:97, causas:[]},
-    PBA:{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:0, backlog:5874, forecast:2588, recebido:2571, forecastRec:99, escoados:2485, expedicao:96, causas:[]},
-    'IBT + SCB':{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:0, backlog:-4843, forecast:6057, recebido:3597, forecastRec:59, escoados:3531, expedicao:75, causas:[]},
-    'MCO + PPG':{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:0, backlog:4989, forecast:2383, recebido:2124, forecastRec:89, escoados:2125, expedicao:96, causas:[]},
-    LAG:{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:52, backlog:-1869, forecast:3734, recebido:2149, forecastRec:58, escoados:2136, expedicao:99, causas:[]},
-    PSJ:{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:0, backlog:-2390, forecast:3132, recebido:2495, forecastRec:80, escoados:2475, expedicao:87, causas:[]},
-    BRU:{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:0, backlog:2969, forecast:3357, recebido:2498, forecastRec:74, escoados:2421, expedicao:98, causas:[]},
-    TBR:{routing:'Regional Sudeste', band:'semdado', sla:null, delta:null, insucesso:65, backlog:-3218, forecast:1510, recebido:0, forecastRec:0, escoados:1017, expedicao:98, causas:[]},
-    ANA:{routing:'Regional Centro Norte', band:'semdado', sla:null, delta:null, insucesso:0, backlog:-578, forecast:886, recebido:0, forecastRec:0, escoados:1051, expedicao:97, causas:[]}
+    LDA:{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:0, backlog:-258, forecast:6110, recebido:0, forecastRec:0, escoados:null, expedicao:0, insucessoPct:0.41, metaInsucesso:2.64, causas:[{motivo:"Destinatário Ausente", pacotes:0, share:0.0, impacto:0.00}, {motivo:"Endereço errado", pacotes:5, share:100.0, impacto:0.41}, {motivo:"Recusado pelo Destinatário", pacotes:0, share:0.0, impacto:0.00}], causasPorDia:{7:{total:5.31, motivos:[{motivo:"Destinatário Ausente", impacto:1.80, pacotes:18}, {motivo:"Endereço errado", impacto:3.41, pacotes:34}, {motivo:"Recusado pelo Destinatário", impacto:0.10, pacotes:1}]}, 6:{total:2.38, motivos:[{motivo:"Destinatário Ausente", impacto:1.19, pacotes:7}, {motivo:"Endereço errado", impacto:1.19, pacotes:7}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 5:{total:3.61, motivos:[{motivo:"Destinatário Ausente", impacto:2.07, pacotes:12}, {motivo:"Endereço errado", impacto:1.20, pacotes:7}, {motivo:"Recusado pelo Destinatário", impacto:0.34, pacotes:2}]}, 4:{total:4.41, motivos:[{motivo:"Destinatário Ausente", impacto:2.28, pacotes:15}, {motivo:"Endereço errado", impacto:1.98, pacotes:13}, {motivo:"Recusado pelo Destinatário", impacto:0.15, pacotes:1}]}, 3:{total:2.37, motivos:[{motivo:"Destinatário Ausente", impacto:0.84, pacotes:6}, {motivo:"Endereço errado", impacto:1.53, pacotes:11}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 0:{total:0.41, motivos:[{motivo:"Destinatário Ausente", impacto:0.00, pacotes:0}, {motivo:"Endereço errado", impacto:0.41, pacotes:5}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}}},
+    JVL:{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:3, backlog:1478, forecast:10838, recebido:682, forecastRec:6, escoados:null, expedicao:0, insucessoPct:2.70, metaInsucesso:2.14, causas:[{motivo:"Destinatário Ausente", pacotes:7, share:46.7, impacto:1.26}, {motivo:"Endereço errado", pacotes:8, share:53.3, impacto:1.44}, {motivo:"Recusado pelo Destinatário", pacotes:0, share:0.0, impacto:0.00}], causasPorDia:{7:{total:2.54, motivos:[{motivo:"Destinatário Ausente", impacto:1.25, pacotes:55}, {motivo:"Endereço errado", impacto:1.18, pacotes:52}, {motivo:"Recusado pelo Destinatário", impacto:0.11, pacotes:5}]}, 6:{total:1.76, motivos:[{motivo:"Destinatário Ausente", impacto:1.02, pacotes:36}, {motivo:"Endereço errado", impacto:0.74, pacotes:26}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 5:{total:3.05, motivos:[{motivo:"Destinatário Ausente", impacto:1.22, pacotes:55}, {motivo:"Endereço errado", impacto:1.65, pacotes:74}, {motivo:"Recusado pelo Destinatário", impacto:0.18, pacotes:8}]}, 4:{total:1.63, motivos:[{motivo:"Destinatário Ausente", impacto:0.86, pacotes:41}, {motivo:"Endereço errado", impacto:0.71, pacotes:34}, {motivo:"Recusado pelo Destinatário", impacto:0.06, pacotes:3}]}, 3:{total:2.02, motivos:[{motivo:"Destinatário Ausente", impacto:0.84, pacotes:39}, {motivo:"Endereço errado", impacto:1.09, pacotes:51}, {motivo:"Recusado pelo Destinatário", impacto:0.09, pacotes:4}]}, 0:{total:2.70, motivos:[{motivo:"Destinatário Ausente", impacto:1.26, pacotes:7}, {motivo:"Endereço errado", impacto:1.44, pacotes:8}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}}},
+    BAL:{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:2, backlog:25646, forecast:6059, recebido:3448, forecastRec:57, escoados:3210, expedicao:0, insucessoPct:2.33, metaInsucesso:null, causas:[{motivo:"Destinatário Ausente", pacotes:48, share:49.4, impacto:1.15}, {motivo:"Endereço errado", pacotes:45, share:46.4, impacto:1.08}, {motivo:"Recusado pelo Destinatário", pacotes:4, share:4.3, impacto:0.10}], causasPorDia:{0:{total:2.33, motivos:[{motivo:"Destinatário Ausente", impacto:1.15, pacotes:48}, {motivo:"Endereço errado", impacto:1.08, pacotes:45}, {motivo:"Recusado pelo Destinatário", impacto:0.10, pacotes:4}]}}},
+    SDI:{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:2, backlog:4012, forecast:2549, recebido:3042, forecastRec:119, escoados:null, expedicao:0, insucessoPct:2.19, metaInsucesso:1.33, causas:[{motivo:"Destinatário Ausente", pacotes:43, share:67.1, impacto:1.47}, {motivo:"Endereço errado", pacotes:17, share:26.5, impacto:0.58}, {motivo:"Recusado pelo Destinatário", pacotes:4, share:6.4, impacto:0.14}], causasPorDia:{7:{total:0.70, motivos:[{motivo:"Destinatário Ausente", impacto:0.28, pacotes:4}, {motivo:"Endereço errado", impacto:0.42, pacotes:6}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 6:{total:1.66, motivos:[{motivo:"Destinatário Ausente", impacto:0.70, pacotes:8}, {motivo:"Endereço errado", impacto:0.70, pacotes:8}, {motivo:"Recusado pelo Destinatário", impacto:0.26, pacotes:3}]}, 5:{total:0.30, motivos:[{motivo:"Destinatário Ausente", impacto:0.10, pacotes:0}, {motivo:"Endereço errado", impacto:0.20, pacotes:1}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 4:{total:0.72, motivos:[{motivo:"Destinatário Ausente", impacto:0.18, pacotes:3}, {motivo:"Endereço errado", impacto:0.48, pacotes:8}, {motivo:"Recusado pelo Destinatário", impacto:0.06, pacotes:1}, {motivo:"Cliente ausente", impacto:null, pacotes:2}, {motivo:"Recusado pelo cliente", impacto:null, pacotes:1}]}, 3:{total:0.64, motivos:[{motivo:"Destinatário Ausente", impacto:0.20, pacotes:4}, {motivo:"Endereço errado", impacto:0.44, pacotes:9}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 0:{total:2.19, motivos:[{motivo:"Destinatário Ausente", impacto:1.47, pacotes:43}, {motivo:"Endereço errado", impacto:0.58, pacotes:17}, {motivo:"Recusado pelo Destinatário", impacto:0.14, pacotes:4}]}}},
+    BTA:{routing:'Regional Sudeste', band:'semdado', sla:null, delta:null, insucesso:0, backlog:5131, forecast:890, recebido:1180, forecastRec:133, escoados:null, expedicao:0, causas:[]},
+    JSS:{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:2, backlog:-811, forecast:6173, recebido:2361, forecastRec:38, escoados:2505, expedicao:0, insucessoPct:2.39, metaInsucesso:2.90, causas:[{motivo:"Destinatário Ausente", pacotes:15, share:33.5, impacto:0.80}, {motivo:"Endereço errado", pacotes:30, share:66.5, impacto:1.59}, {motivo:"Recusado pelo Destinatário", pacotes:0, share:0.0, impacto:0.00}], causasPorDia:{7:{total:2.84, motivos:[{motivo:"Destinatário Ausente", impacto:1.24, pacotes:14}, {motivo:"Endereço errado", impacto:1.51, pacotes:17}, {motivo:"Recusado pelo Destinatário", impacto:0.09, pacotes:1}]}, 6:{total:3.11, motivos:[{motivo:"Destinatário Ausente", impacto:2.13, pacotes:24}, {motivo:"Endereço errado", impacto:0.89, pacotes:10}, {motivo:"Recusado pelo Destinatário", impacto:0.09, pacotes:1}]}, 5:{total:2.31, motivos:[{motivo:"Destinatário Ausente", impacto:1.06, pacotes:11}, {motivo:"Endereço errado", impacto:1.25, pacotes:13}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 4:{total:2.91, motivos:[{motivo:"Destinatário Ausente", impacto:1.94, pacotes:18}, {motivo:"Endereço errado", impacto:0.86, pacotes:8}, {motivo:"Recusado pelo Destinatário", impacto:0.11, pacotes:1}]}, 3:{total:1.91, motivos:[{motivo:"Destinatário Ausente", impacto:0.82, pacotes:6}, {motivo:"Endereço errado", impacto:1.09, pacotes:8}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}, 0:{total:2.39, motivos:[{motivo:"Destinatário Ausente", impacto:0.80, pacotes:15}, {motivo:"Endereço errado", impacto:1.59, pacotes:30}, {motivo:"Recusado pelo Destinatário", impacto:0.00, pacotes:0}]}}},
+    FLO:{routing:'Regional Sudeste', band:'semdado', sla:null, delta:null, insucesso:0, backlog:6226, forecast:1509, recebido:1234, forecastRec:82, escoados:null, expedicao:0, causas:[]},
+    CSS:{routing:'Regional Centro Norte', band:'semdado', sla:null, delta:null, insucesso:0, backlog:1113, forecast:1617, recebido:1267, forecastRec:78, escoados:null, expedicao:0, causas:[]},
+    LET:{routing:'Regional Sudeste', band:'semdado', sla:null, delta:null, insucesso:0, backlog:9488, forecast:1479, recebido:1355, forecastRec:92, escoados:null, expedicao:0, causas:[]},
+    IMB:{routing:'Regional Centro Norte', band:'semdado', sla:null, delta:null, insucesso:0, backlog:7037, forecast:877, recebido:223, forecastRec:25, escoados:null, expedicao:0, causas:[]},
+    OLD:{routing:'Regional Centro Norte', band:'semdado', sla:null, delta:null, insucesso:0, backlog:8063, forecast:1167, recebido:261, forecastRec:22, escoados:null, expedicao:0, causas:[]},
+    FTZ:{routing:'Regional Centro Norte', band:'semdado', sla:null, delta:null, insucesso:0, backlog:4577, forecast:797, recebido:194, forecastRec:24, escoados:null, expedicao:0, causas:[]},
+    PQI:{routing:'Regional Centro Norte', band:'semdado', sla:null, delta:null, insucesso:0, backlog:3775, forecast:2145, recebido:18, forecastRec:1, escoados:null, expedicao:0, causas:[]},
+    'CPN + CJL + HTL':{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:0, backlog:2769, forecast:3026, recebido:1763, forecastRec:58, escoados:3502, expedicao:0, causas:[]},
+    PBA:{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:0, backlog:9346, forecast:1265, recebido:987, forecastRec:78, escoados:null, expedicao:0, causas:[]},
+    'IBT + SCB':{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:0, backlog:1312, forecast:4147, recebido:1312, forecastRec:32, escoados:null, expedicao:0, causas:[]},
+    'MCO + PPG':{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:0, backlog:8497, forecast:5748, recebido:1383, forecastRec:24, escoados:null, expedicao:0, causas:[]},
+    LAG:{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:1, backlog:-1084, forecast:2297, recebido:851, forecastRec:37, escoados:2202, expedicao:0, causas:[]},
+    PSJ:{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:0, backlog:1756, forecast:2774, recebido:1058, forecastRec:38, escoados:1232, expedicao:0, causas:[]},
+    BRU:{routing:'Regional Sul', band:'semdado', sla:null, delta:null, insucesso:0, backlog:4649, forecast:2781, recebido:0, forecastRec:0, escoados:741, expedicao:0, causas:[]},
+    TBR:{routing:'Regional Sudeste', band:'semdado', sla:null, delta:null, insucesso:3, backlog:-3579, forecast:1298, recebido:0, forecastRec:0, escoados:215, expedicao:0, causas:[]},
+    ANA:{routing:'Regional Centro Norte', band:'semdado', sla:null, delta:null, insucesso:0, backlog:472, forecast:47, recebido:0, forecastRec:0, escoados:1, expedicao:0, causas:[]},
+    ADE:{routing:'Regional Centro Norte', band:'semdado', sla:null, delta:null, insucesso:0, backlog:11846, forecast:3259, recebido:2740, forecastRec:84, escoados:2836, expedicao:0, causas:[]},
+    AGP:{routing:'Regional Centro Norte', band:'semdado', sla:null, delta:null, insucesso:0, backlog:10731, forecast:3997, recebido:2544, forecastRec:64, escoados:2545, expedicao:0, causas:[]},
+    SOF:{routing:'Regional Centro Norte', band:'semdado', sla:null, delta:null, insucesso:0, backlog:14484, forecast:3243, recebido:3410, forecastRec:105, escoados:null, expedicao:0, causas:[]}
   };
 
-  var BRASIL = {sla:98.29, delta:null, insucesso:186, insucessoDeltaPct:null, backlog:78321, backlogDeltaPct:null, forecast:126525, recebido:90970, forecastRec:72, expedicao:108, criticas:0, criticasDelta:0};
+  var BRASIL = {sla:98.84, delta:null, insucesso:28, insucessoDeltaPct:null, backlog:256787, backlogDeltaPct:null, forecast:113755, recebido:59060, forecastRec:52, expedicao:57, criticas:0, criticasDelta:0};
 
   // ---- Tendência: série pseudo-aleatória determinística (seed = código da
   // base) terminando no valor real de hoje — só pra mockup; a versão final
